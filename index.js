@@ -10,14 +10,7 @@ client.once("ready", () => {
     },
     status: "online",
   });
-  const text = `
-    ------------------------------
-    Ready since: ${moment(Date.now()).format("dddd, MMMM do YYYY, HH:mm:ss")}
-    Server: ${client.guilds.first().name}
-    Total server members: ${client.guilds.first().memberCount}
-    ------------------------------
-    `; //The text that displays to console, when client is ready.
-  Console.log(text);
+  Console.log("Ready");
 });
 
 client.on("message", (message) => {
