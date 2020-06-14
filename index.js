@@ -6,7 +6,11 @@ const prefix = "y!";
 client.once("ready", () => {
   client.user
     .setPresence({
-      activity: { name: "with Apples", application: "Apples" },
+      activity: {
+        name: "with Apples",
+        application: { id: "Apples" },
+        type: "PLAYING",
+      },
       status: "online",
     })
     .then(console.log)
