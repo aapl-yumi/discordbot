@@ -46,15 +46,15 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (message.content === `${prefix}ping`) {
-    message.channel.send(`Pong. ${client.ws.ping} ms`);
+    return message.channel.send(`Pong. ${client.ws.ping} ms`);
   } else if (message.content === `${prefix}server`) {
-    message.channel.send(`This server's name is: ${message.guild.name}`);
-  } else if (message.content === `${prefix}user-info`) {
-    message.channel.send(
+    return message.channel.send(`This server's name is: ${message.guild.name}`);
+  } else if (message.content === `${prefix}aboutme`) {
+    return message.channel.send(
       `Your username: ${message.author.tag}\nYour ID: ${message.author.id}`
     );
   } else if (message.content === `${prefix}hello`) {
-    message.channel.send(`ブンブンハロー ${message.author}`);
+    return message.channel.send(`ブンブンハロー ${message.author}`);
   }
 });
 
