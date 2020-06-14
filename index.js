@@ -46,7 +46,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (message.content === `${prefix}ping`) {
-    message.channel.send("Pong.", command);
+    message.channel.send(`Pong. ${message.author}`, command);
   } else if (message.content === `${prefix}server`) {
     message.channel.send(`This server's name is: ${message.guild.name}`);
   } else if (message.content === `${prefix}user-info`) {
