@@ -22,64 +22,27 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (!message.guild) return;
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-  const args = message.content.slice(prefix.length).split(" ");
-  const command = args.shift().toLowerCase();
-
-  if (message.content === `${prefix}ping`) {
-    message.channel.send("Pong.", command);
-  } else if (message.content === `${prefix}server`) {
-    message.channel.send(`This server's name is: ${message.guild.name}`);
-  } else if (message.content === `${prefix}user-info`) {
-    message.channel.send(
-      `Your username: ${message.author.tag}\nYour ID: ${message.author.id}`
-    );
-  } else if (message.content === `${prefix}hello`) {
-    message.channel.send(`ブンブンハロー ${message.author}`);
-  } else if (message.content === `${prefix}help`) {
+  if (message.content === `${prefix}help`) {
     message.channel.send(
       `For help, please visit https://yumiizumi.com/discordbot.`
     );
-  }
-});
+    if (!message.guild) return;
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-client.on("guildMemberAdd", (member) => {
-  //All choices are optional here. Bot wont work if the channel ID's are wrong. How to properly get ID's read in README.md
-  try {
-    member.guild.channels
-      .get(options.total)
-      .setName(`Total Members: ${member.guild.memberCount}`); // You can change this text, but still keep ${guild.memberCount}, as it defines total members.
-    member.guild.channels
-      .get(options.users)
-      .setName(
-        `Users: ${member.guild.members.filter((m) => !m.user.bot).size}`
-      ); // This text is also changeable, still keep the code in ${}
-    member.guild.channels
-      .get(options.bots)
-      .setName(`Bots: ${member.guild.members.filter((m) => m.user.bot).size}`); // This text is also changeable, still keep the code in ${}
-  } catch (e) {
-    Console.log(e);
-  }
-});
+    const args = message.content.slice(prefix.length).split(" ");
+    const command = args.shift().toLowerCase();
 
-client.on("guildMemberRemove", (member) => {
-  //All choices are optional here. Bot wont work if the channel ID's are wrong. How to properly get ID's read in README.md
-  try {
-    member.guild.channels
-      .get(options.total)
-      .setName(`Total Members: ${member.guild.memberCount}`); // You can change this text, but still keep ${guild.memberCount}, as it defines total members.
-    member.guild.channels
-      .get(options.users)
-      .setName(
-        `Users: ${member.guild.members.filter((m) => !m.user.bot).size}`
-      ); // This text is also changeable, still keep the code in ${}'s
-    member.guild.channels
-      .get(options.bots)
-      .setName(`Bots: ${member.members.filter((m) => m.user.bot).size}`); // This text is also changeable, still keep the code in ${}'s
-  } catch (e) {
-    Console.log(e);
+    if (message.content === `${prefix}ping`) {
+      message.channel.send("Pong.", command);
+    } else if (message.content === `${prefix}server`) {
+      message.channel.send(`This server's name is: ${message.guild.name}`);
+    } else if (message.content === `${prefix}user-info`) {
+      message.channel.send(
+        `Your username: ${message.author.tag}\nYour ID: ${message.author.id}`
+      );
+    } else if (message.content === `${prefix}hello`) {
+      message.channel.send(`ブンブンハロー ${message.author}`);
+    }
   }
 });
 
