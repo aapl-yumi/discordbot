@@ -7,7 +7,7 @@ client.once("ready", () => {
   client.user
     .setPresence({
       activity: {
-        name: "with an Apple",
+        name: "with an Apple | y!help",
         application: { id: "684070810486702141" },
         type: "PLAYING",
       },
