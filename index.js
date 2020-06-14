@@ -30,7 +30,7 @@ client.on("message", (message) => {
     message.channel.send(`ブンブンハロー ${message.author.username}`);
   } else if (message.content === `${prefix}help`) {
     message.channel.send(
-      `For help, please visit https://yumiizumi.com/discordbot`
+      `For help, please visit https://yumiizumi.com/discordbot.`
     );
   }
 });
