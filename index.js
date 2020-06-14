@@ -5,7 +5,7 @@ const prefix = "y!";
 
 client.once("ready", () => {
   client.user
-    .setPresence({ activity: { name: "Epic VALORANT" }, status: "online" })
+    .setPresence({ activity: { name: "with Computer" }, status: "online" })
     .then(console.log)
     .catch(console.error);
   console.log("Ready!");
