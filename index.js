@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 const prefix = "y!";
 
-const Console = console;
+const Console = new console();
 
 let options = {
   total: "721679994581024768",
