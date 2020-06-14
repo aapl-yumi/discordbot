@@ -35,6 +35,11 @@ client.on("message", (message) => {
   }
   if (!message.guild) return;
   if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (
+    message.guild &&
+    !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES")
+  )
+    return;
 
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
