@@ -46,11 +46,13 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (message.content === `${prefix}ping`) {
-    var resMsg = msg.channel.send("Ping is being appreciated... :bar_chart:");
+    var resMsg = message.channel.send(
+      "Ping is being appreciated... :bar_chart:"
+    );
     resMsg.edit(
       "Ping: " +
         Math.round(
-          resMsg.createdTimestamp - msg.createdTimestamp - client.ws.ping
+          resMsg.createdTimestamp - message.createdTimestamp - client.ws.ping
         )
     ); //client.ping has been moved to the WebSocketManager under client.ws.ping
   } else if (message.content === `${prefix}server`) {
