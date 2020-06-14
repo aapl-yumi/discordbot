@@ -3,6 +3,12 @@ const client = new Discord.Client();
 
 const prefix = "y!";
 
+let options = {
+  total: "721679994581024768",
+  users: "channel id",
+  bots: "channel id",
+};
+
 client.once("ready", () => {
   client.user.setPresence({
     activity: {
