@@ -47,7 +47,9 @@ client.on("message", (message) => {
 
   if (message.content === `${prefix}ping`) {
     message.channel.send(
-      `Pong. ${Date.now() - message.createdTimestamp} ms`,
+      `Pong. ${message.author}'s ping is ${
+        Date.now() - message.createdTimestamp
+      } ms`,
       command
     );
   } else if (message.content === `${prefix}server`) {
