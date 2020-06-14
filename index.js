@@ -47,7 +47,7 @@ client.on("message", (message) => {
 
   if (message.content === `${prefix}ping`) {
     message.channel.send(
-      `Pong. ${message.author}'s ping is ${client.ws.ping} ms`,
+      `Pong. ${message.author}'s ping is ${client.ws.ping} ms.`,
       command
     );
   } else if (message.content === `${prefix}server`) {
