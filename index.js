@@ -51,7 +51,7 @@ client.on("message", (message) => {
     return message.channel.send(`This server's name is: ${message.guild.name}`);
   } else if (message.content === `${prefix}aboutme`) {
     return message.channel.send(
-      `Your username: ${message.author.tag}\nYour ID: ${message.author.id}`
+      `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
     );
   } else if (message.content === `${prefix}hello`) {
     return message.channel.send(`ブンブンハロー ${message.author}`);
