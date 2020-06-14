@@ -4,16 +4,20 @@ const client = new Discord.Client();
 const prefix = "y!";
 
 client.once("ready", () => {
-  client.user
-    .setPresence({
-      activity: {
-        name: "with an Apple | y!help",
-      },
-      status: "online",
-    })
-    .then(console.log)
-    .catch(console.error);
-  console.log("Ready!");
+  client.user.setPresence({
+    activity: {
+      name: "with an Apple | y!help",
+    },
+    status: "online",
+  });
+  const text = `
+    ------------------------------
+    Ready since: ${moment(Date.now()).format("dddd, MMMM do YYYY, HH:mm:ss")}
+    Server: ${client.guilds.first().name}
+    Total server members: ${client.guilds.first().memberCount}
+    ------------------------------
+    `; //The text that displays to console, when client is ready.
+  Console.log(text);
 });
 
 client.on("message", (message) => {
