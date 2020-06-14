@@ -5,7 +5,10 @@ const prefix = "y!";
 
 client.once("ready", () => {
   client.user
-    .setPresence({ activity: { name: "with a Computer" }, status: "online" })
+    .setPresence({
+      activity: { name: "with Apples", application: "Apples" },
+      status: "online",
+    })
     .then(console.log)
     .catch(console.error);
   console.log("Ready!");
