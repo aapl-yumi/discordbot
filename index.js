@@ -27,7 +27,7 @@ client.on("message", (message) => {
       `Your username: ${message.author.username}\nYour ID: ${message.author.id}`
     );
   } else if (message.content === `${prefix}hello`) {
-    message.channel.send(`hello`);
+    message.channel.send(`ブンブンハロー ${message.author.username}`);
   }
 });
 
