@@ -1,14 +1,13 @@
 var firebase = require("firebase");
 var firebaseConfig = {
-  apiKey: "apiKey",
-  authDomain: "authDomain",
-  databaseURL: "databaseURL",
-  projectId: "projectId",
-  storageBucket: "storageBucket",
-  messagingSenderId: "messagingSenderId",
-  appId: "appId",
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
 };
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 const Discord = require("discord.js");
