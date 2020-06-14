@@ -8,8 +8,6 @@ client.once("ready", () => {
     .setPresence({
       activity: {
         name: "with an Apple | y!help",
-        application: { id: "684070810486702141" },
-        type: "PLAYING",
       },
       status: "online",
     })
