@@ -1,3 +1,16 @@
+var firebase = require("firebase");
+var firebaseConfig = {
+  apiKey: "apiKey",
+  authDomain: "authDomain",
+  databaseURL: "databaseURL",
+  projectId: "projectId",
+  storageBucket: "storageBucket",
+  messagingSenderId: "messagingSenderId",
+  appId: "appId",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
