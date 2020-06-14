@@ -46,10 +46,8 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
 
   if (message.content === `${prefix}ping`) {
-    message.channel.send(
-      `Pong. ${message.author}'s ping is ${client.ws.ping} ms.`,
-      command
-    );
+    var resMsg = await msg.channel.send('Ping is being appreciated... :bar_chart:');
+    resMsg.edit('Ping: ' + Math.round((resMsg.createdTimestamp - msg.createdTimestamp) - client.ws.ping)); //client.ping has been moved to the WebSocketManager under client.ws.ping
   } else if (message.content === `${prefix}server`) {
     message.channel.send(`This server's name is: ${message.guild.name}`);
   } else if (message.content === `${prefix}user-info`) {
