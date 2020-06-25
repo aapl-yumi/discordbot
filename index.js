@@ -57,4 +57,43 @@ client.on("message", (message) => {
   }
 });
 
+client.on("messageReactionAdd", addRole);
+
 client.login(process.env.BOT_TOKEN);
+
+async function addRole({ message, _emoji }, user) {
+  if (user.bot || message.id !== config.message_id) {
+    return;
+  }
+
+  // partials do not guarantee all data is available, but it can be fetched
+  // fetch the information to ensure everything is available
+  // https://github.com/discordjs/discord.js/blob/master/docs/topics/partials.md
+  if (message.partial) {
+    try {
+      await message.fetch();
+    } catch (err) {
+      console.error("Error fetching message", err);
+      return;
+    }
+  }
+
+  const { guild } = message;
+
+  const member = guild.members.get(user.id);
+  const role = guild.roles.find(
+    (role) => role.name === config.roles[_emoji.name]
+  );
+
+  if (!role) {
+    console.error(`Role not found for '${_emoji.name}'`);
+    return;
+  }
+
+  try {
+    member.roles.add(role.id);
+  } catch (err) {
+    console.error("Error adding role", err);
+    return;
+  }
+}
