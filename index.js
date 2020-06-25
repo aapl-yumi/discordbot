@@ -66,9 +66,6 @@ async function addRole({ message, _emoji }, user) {
     return;
   }
 
-  // partials do not guarantee all data is available, but it can be fetched
-  // fetch the information to ensure everything is available
-  // https://github.com/discordjs/discord.js/blob/master/docs/topics/partials.md
   if (message.partial) {
     try {
       await message.fetch();
