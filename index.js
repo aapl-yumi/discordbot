@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const prefix = "y!";
+const prefix = "y!" || "hey yumi ";
 
 const Console = console;
 
