@@ -30,7 +30,7 @@ client.once("ready", () => {
 client.on("message", (message) => {
   if (message.content === `${prefix}help`) {
     return message.channel.send(
-      `For help, please visit https://yumiizumi.com/discordbot.`
+      `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
     );
   }
   if (!message.guild) return;
