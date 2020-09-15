@@ -63,7 +63,7 @@ client.on("message", (message) => {
       return message.channel.send(`ブンブンハロー ${message.author}`);
     } else if (message.content === `${prefix}no`) {
       return message.channel.send(`Because no.`);
-    } else if (message.content.startsWith(`${prefix}calculate`) && args) {
+    } else if (message.content.startsWith(`${prefix}calc`) && args) {
       return message.channel.send(`That's too hard for me`);
     }
   } 
