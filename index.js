@@ -48,7 +48,7 @@ client.on("message", (message) => {
     return message.channel.send(`Pong. ${client.ws.ping} ms`);
   } else if (message.content === `${prefix}server`) {
     return message.channel.send(`This server's name is: ${message.guild.name}`);
-  } else if (message.content === `${prefix}aboutme`) {
+  } else if (message.content === `${prefix}aboutme` || `${prefix}whoami`) {
     return message.channel.send(
       `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
     );
