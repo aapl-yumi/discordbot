@@ -31,7 +31,7 @@ client.on("message", (message) => {
   if (message.author.bot) return;
 
   if (message.content.search("sad") >= 0) {
-    return message.channel.send(message.content.search("sad"));
+    return message.channel.send(`omg so sad alexa play despacito`);
   }
   if (message.content === `${prefix}help`) {
     return message.channel.send(
