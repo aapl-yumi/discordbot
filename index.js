@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const prefix = "y!" || "hey yumi ";
+const prefix = "y!";
 
 const Console = console;
 
@@ -65,7 +65,9 @@ client.on("message", (message) => {
       return message.channel.send(`Because no.`);
     } else if (message.content.startsWith(`${prefix}calc ` || `${prefix}calculate `) && args.length > 0) {
       return message.channel.send(`That's too hard for me`);
-    }
+    } else if (message.content.startsWith(`${prefix}umi`)) {
+      return message.channel.send(`Visit https://yumiizumi.com for more information on @Yumi#3304.`);
+    } 
   } 
 });
 
