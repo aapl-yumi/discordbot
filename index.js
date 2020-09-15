@@ -29,9 +29,9 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   // if (message.author)
-  if (message.content.search("sad")) {
-    return message.channel.send(`omg so sad alexa play despacito ${message.author}`);
-  }
+  // if (message.content.search("sad")) {
+  //   return message.channel.send(`omg so sad alexa play despacito ${message.author}`);
+  // }
   if (message.content === `${prefix}help`) {
     return message.channel.send(
       `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
