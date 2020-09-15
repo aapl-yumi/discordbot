@@ -28,7 +28,8 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (message.author === "@Yumi's Bot#9648") return
+  if (message.author.bot) return;
+
   if (message.content.search("sad") >= 0) {
     return message.channel.send(message.content.search("sad"));
   }
@@ -40,7 +41,7 @@ client.on("message", (message) => {
   if (!message.guild) {
     return message.channel.send(`no.`)
   } else {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
     if (
       message.guild &&
       !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES")
