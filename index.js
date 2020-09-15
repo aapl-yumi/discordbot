@@ -28,38 +28,41 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (message.content.search("sad")) {
-    return message.channel.send(`omg so sad alexa play despacito`);
-  }
+  // if (message.content.search("sad")) {
+  //   return message.channel.send(`omg so sad alexa play despacito`);
+  // }
   if (message.content === `${prefix}help`) {
     return message.channel.send(
       `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
     );
   }
-  if (!message.guild) return;
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-  if (
-    message.guild &&
-    !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES")
-  )
-    return;
+  if (!message.guild) {
+    return message.channel.send(`no.`)
+  } else {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (
+      message.guild &&
+      !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES")
+    )
+      return;
 
-  const args = message.content.slice(prefix.length).split(" ");
-  const command = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).split(" ");
+    const command = args.shift().toLowerCase();
 
-  if (message.content === `${prefix}ping`) {
-    return message.channel.send(`Pong. ${client.ws.ping} ms`);
-  } else if (message.content === `${prefix}server`) {
-    return message.channel.send(`This server's name is: ${message.guild.name}`);
-  } else if (message.content === `${prefix}aboutme` || `${prefix}whoami`) {
-    return message.channel.send(
-      `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
-    );
-  } else if (message.content === `${prefix}hello`) {
-    return message.channel.send(`ブンブンハロー ${message.author}`);
-  } else if (message.content === `${prefix}no`) {
-    return message.channel.send(`Because no.`);
-  }
+    if (message.content === `${prefix}ping`) {
+      return message.channel.send(`Pong. ${client.ws.ping} ms`);
+    } else if (message.content === `${prefix}server`) {
+      return message.channel.send(`This server's name is: ${message.guild.name}`);
+    } else if (message.content === `${prefix}aboutme` || `${prefix}whoami`) {
+      return message.channel.send(
+        `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
+      );
+    } else if (message.content === `${prefix}hello`) {
+      return message.channel.send(`ブンブンハロー ${message.author}`);
+    } else if (message.content === `${prefix}no`) {
+      return message.channel.send(`Because no.`);
+    }
+  } 
 });
 
 client.on("messageReactionAdd", addRole);
