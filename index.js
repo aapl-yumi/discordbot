@@ -38,6 +38,7 @@ client.on("message", (message) => {
       `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
     );
   }
+
   if (!message.guild) {
     return message.channel.send(`no.`)
   } else {
@@ -45,8 +46,7 @@ client.on("message", (message) => {
     if (
       message.guild &&
       !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES")
-    )
-      return;
+    ) return;
 
     const args = message.content.slice(prefix.length).split(" ");
     const command = args.shift().toLowerCase();
@@ -55,7 +55,7 @@ client.on("message", (message) => {
       return message.channel.send(`Pong. ${client.ws.ping} ms`);
     } else if (message.content === `${prefix}server`) {
       return message.channel.send(`This server's name is: ${message.guild.name}`);
-    } else if (message.content === `${prefix}aboutme` || `${prefix}whoami`) {
+    } else if (message.content === (`${prefix}aboutme` || `${prefix}whoami`)) {
       return message.channel.send(
         `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
       );
