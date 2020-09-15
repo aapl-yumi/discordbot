@@ -30,7 +30,7 @@ client.once("ready", () => {
 client.on("message", (message) => {
   if (message.author === "@Yumi's Bot#9648") return
   if (message.content.search("sad") >= 0) {
-    return message.channel.send(`omg so sad alexa play despacito ${message.author}`);
+    return message.channel.send(message.content.search("sad"));
   }
   if (message.content === `${prefix}help`) {
     return message.channel.send(
