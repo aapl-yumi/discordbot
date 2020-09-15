@@ -22,7 +22,7 @@ client.once("ready", () => {
     activity: {
       name: "with an Apple | y!help",
     },
-    status: "online",
+    status: "idle",
   });
   Console.log("Ready");
 });
