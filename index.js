@@ -30,8 +30,8 @@ client.once("ready", () => {
 client.on("message", (message) => {
   firebase
     .database()
-    .ref(message.guildID + "autoresponder")
-    .set({ abc: 1 });
+    .ref(message.guildID + "/autoresponder")
+    .set({ abc: message.guildID });
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
