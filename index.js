@@ -28,6 +28,10 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
+  firebase.database().ref();
+  if (message.content === "testtest") {
+    return message.channel.send(JSON.stringify(message));
+  }
   lowerCaseMessageContent = message.content.toLowerCase();
 
   if (message.author.bot) return;
