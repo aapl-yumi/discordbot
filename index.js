@@ -29,7 +29,7 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   lowerCaseMessageContent = message.content.toLowerCase();
-  
+
   if (message.author.bot) return;
 
   if (lowerCaseMessageContent.search("sad") >= 0) {
@@ -42,13 +42,14 @@ client.on("message", (message) => {
   }
 
   if (!message.guild) {
-    return message.channel.send(`no.`)
+    return message.channel.send(`no.`);
   } else {
     if (!message.content.startsWith(prefix)) return;
     if (
       message.guild &&
       !message.channel.permissionsFor(message.guild.me).missing("SEND_MESSAGES")
-    ) return;
+    )
+      return;
 
     const args = message.content.slice(prefix.length).split(" ");
     const command = args.shift().toLowerCase();
@@ -56,7 +57,9 @@ client.on("message", (message) => {
     if (message.content === `${prefix}ping`) {
       return message.channel.send(`Pong. ${client.ws.ping} ms`);
     } else if (message.content === `${prefix}server`) {
-      return message.channel.send(`This server's name is: ${message.guild.name}`);
+      return message.channel.send(
+        `This server's name is: ${message.guild.name}`
+      );
     } else if (message.content === (`${prefix}aboutme` || `${prefix}whoami`)) {
       return message.channel.send(
         `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
@@ -65,12 +68,17 @@ client.on("message", (message) => {
       return message.channel.send(`ブンブンハロー ${message.author}`);
     } else if (message.content === `${prefix}no`) {
       return message.channel.send(`Because no.`);
-    } else if (message.content.startsWith(`${prefix}calc ` || `${prefix}calculate `) && args.length > 0) {
+    } else if (
+      message.content.startsWith(`${prefix}calc ` || `${prefix}calculate `) &&
+      args.length > 0
+    ) {
       return message.channel.send(`That's too hard for me`);
     } else if (message.content === `${prefix}umi`) {
-      return message.channel.send(`Visit <https://yumiizumi.com> for more information on Yumi.`);
+      return message.channel.send(
+        `Visit <https://yumiizumi.com> for more information on Yumi.`
+      );
     }
-  } 
+  }
 });
 
 client.login(process.env.BOT_TOKEN);
