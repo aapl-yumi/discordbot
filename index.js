@@ -24,6 +24,7 @@ client.once("ready", () => {
     },
     status: "idle",
   });
+
   Console.log("Ready");
 });
 
