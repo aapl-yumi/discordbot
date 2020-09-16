@@ -24,7 +24,7 @@ client.once("ready", () => {
     },
     status: "idle",
   });
-  client.channels.get("755832089764691979").send("Ready " + new Date());
+  client.get_channel("755832089764691979").send("Ready " + new Date());
   Console.log("Ready");
 });
 
