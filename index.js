@@ -28,7 +28,10 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  firebase.database().ref();
+  firebase
+    .database()
+    .ref(message.guildID + "autoresponder")
+    .push();
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
