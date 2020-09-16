@@ -28,9 +28,11 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
+  lowerCaseMessageContent = message.content.toLowerCase();
+  
   if (message.author.bot) return;
 
-  if (message.content.search("sad") >= 0) {
+  if (lowerCaseMessageContent.search("sad") >= 0) {
     return message.channel.send(`omg so sad alexa play despacito`);
   }
   if (message.content === `${prefix}help`) {
