@@ -41,7 +41,9 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  if (guild.child("autoresque/inque")) {
+  inque = guild.child("autoresque/inque").once("value");
+  if (inque) {
+    guild.child("autoresque/inque");
   }
 
   if (message.content === "testtest") {
