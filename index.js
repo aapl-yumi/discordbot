@@ -100,7 +100,7 @@ client.on("message", (message) => {
       };
       var newPostKey = guild.child("autoresque").push().key;
       var updates = {};
-      updates["/autoresque/" + newPostKey] = postData;
+      updates["/autoresque/" + newPostKey] = queinfo;
       guild.update(updates);
       return message.channel.send(
         "What should the message that initializes a autoresponse?"
