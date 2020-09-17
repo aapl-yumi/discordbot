@@ -39,8 +39,6 @@ client.on("message", (message) => {
     guild
       .child("channels/" + message.channel.id)
       .set({ name: message.channel.name });
-    Console.log(message.guild.roles)
-    guild.set({roles: message.guild.roles})
   }
 
   if (message.content === "testtest") {
