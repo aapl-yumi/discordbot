@@ -93,6 +93,8 @@ client.on("message", (message) => {
       return message.channel.send(
         `Visit <https://yumiizumi.com> for more information on Yumi.`
       );
+    } else if (message.content === `${prefix}autores`) {
+        return message.channel.send(message.content)
     }
   }
 });
