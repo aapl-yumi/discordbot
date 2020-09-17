@@ -36,7 +36,7 @@ client.on("message", (message) => {
       .database()
       .ref()
       .child("servers/" + message.guild.id)
-      .set({ abc: message.guildID });
+      .set({ abc: message.guild.id });
   }
 
   if (message.content === "testtest") {
