@@ -32,10 +32,12 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   if (message.content) {
-    firebase
-      .database()
-      .ref()
-      .child("servers/" + message.guild.id + "/channels/" + message.channel.id)
+    guild = firebase
+    .database()
+    .ref()
+    .child("servers/" + message.guild.id)
+    guild
+      .child("channels/" + message.channel.id)
       .set({ name: message.channel.name });
   }
 
