@@ -35,7 +35,7 @@ client.on("message", (message) => {
     Console.log(message);
     firebase
       .database()
-      .ref("servers/" + message.guildID)
+      .ref("servers/" + message.guild.id)
       .set({ abc: message.guildID });
   }
 
