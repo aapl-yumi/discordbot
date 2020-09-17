@@ -33,8 +33,7 @@ client.once("ready", () => {
 client.on("message", (message) => {
   firebase
     .database()
-    .ref("servers/")
-    .child(message.guildID)
+    .ref("servers/" + message.guildID)
     .set({ abc: message.guildID });
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
