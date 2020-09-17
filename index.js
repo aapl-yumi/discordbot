@@ -35,8 +35,8 @@ client.on("message", (message) => {
     firebase
       .database()
       .ref()
-      .child("servers/" + message.guild.id )
-      .set({ channels: [message.guild.id] });
+      .child("servers/" + message.guild.id + "/channels/" + message.channel.id)
+      .set({ name: message.channel.name });
   }
 
   if (message.content === "testtest") {
