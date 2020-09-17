@@ -31,10 +31,13 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  firebase
+  if (message) {
+    firebase
     .database()
     .ref("servers/" + message.guildID)
     .set({ abc: message.guildID });
+  }
+  
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
