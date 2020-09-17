@@ -33,9 +33,9 @@ client.once("ready", () => {
 client.on("message", (message) => {
   if (message.content) {
     guild = firebase
-    .database()
-    .ref()
-    .child("servers/" + message.guild.id)
+      .database()
+      .ref()
+      .child("servers/" + message.guild.id);
     guild
       .child("channels/" + message.channel.id)
       .set({ name: message.channel.name });
@@ -94,12 +94,17 @@ client.on("message", (message) => {
         `Visit <https://yumiizumi.com> for more information on Yumi.`
       );
     } else if (message.content.startsWith(`${prefix}autores`)) {
-        queinfo = {author: message.author.id, time: Math.floor(Date.now() / 1000)}
-        var newPostKey = guild.child('autoresque').push().key;
-        var updates = {};
-        updates['/autoresque/' + newPostKey] = postData;
-        guild.update(updates);
-        return message.channel.send("What should the message that initializes a autoresponse?");
+      queinfo = {
+        author: message.author.id,
+        time: Math.floor(Date.now() / 1000),
+      };
+      var newPostKey = guild.child("autoresque").push().key;
+      var updates = {};
+      updates["/autoresque/" + newPostKey] = postData;
+      guild.update(updates);
+      return message.channel.send(
+        "What should the message that initializes a autoresponse?"
+      );
     }
   }
 });
