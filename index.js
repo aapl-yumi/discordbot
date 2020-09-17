@@ -31,15 +31,15 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (message.content) {
-    guild = firebase
-      .database()
-      .ref()
-      .child("servers/" + message.guild.id);
-    guild
-      .child("channels/" + message.channel.id)
-      .set({ name: message.channel.name });
-  }
+  if (!message.content) return;
+
+  guild = firebase
+    .database()
+    .ref()
+    .child("servers/" + message.guild.id);
+  guild
+    .child("channels/" + message.channel.id)
+    .set({ name: message.channel.name });
 
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
