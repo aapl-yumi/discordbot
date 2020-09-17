@@ -41,6 +41,9 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
+  if (guild.child("autoresque/inque")) {
+  }
+
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
@@ -51,6 +54,7 @@ client.on("message", (message) => {
   if (lowerCaseMessageContent.search("sad") >= 0) {
     return message.channel.send(`omg so sad alexa play despacito`);
   }
+
   if (message.content === `${prefix}help`) {
     return message.channel.send(
       `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
@@ -94,14 +98,10 @@ client.on("message", (message) => {
         `Visit <https://yumiizumi.com> for more information on Yumi.`
       );
     } else if (message.content.startsWith(`${prefix}autores`)) {
-      queinfo = {
+      guild.child("autoresque/inque").set({
         author: message.author.id,
         time: Math.floor(Date.now() / 1000),
-      };
-      var newPostKey = guild.child("autoresque").push().key;
-      var updates = {};
-      updates["/autoresque/" + newPostKey] = queinfo;
-      guild.update(updates);
+      });
       return message.channel.send(
         "What should the message that initializes a autoresponse?"
       );
