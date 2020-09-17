@@ -32,10 +32,9 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   if (message.content) {
-    Console.log(message);
     firebase
       .database()
-      .ref("servers/" + message.guild.id)
+      .ref("servers/" + message.guild.id.toString())
       .set({ abc: message.guildID });
   }
 
