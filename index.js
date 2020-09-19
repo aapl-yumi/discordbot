@@ -49,7 +49,7 @@ client.on("message", (message) => {
     });
   if (inque) {
     guild.child("autoresque/inque");
-    Console.log("inq");
+    Console.log(inque);
   }
 
   if (message.content === "testtest") {
