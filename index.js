@@ -32,6 +32,7 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   if (!message.content) return;
+  if (message.author.bot) return;
   lowerCaseMessageContent = message.content.toLowerCase();
 
   guild = firebase
@@ -92,8 +93,6 @@ client.on("message", (message) => {
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
-
-  if (message.author.bot) return;
 
   if (lowerCaseMessageContent.search("sad") >= 0) {
     return message.channel.send(`omg so sad alexa play despacito`);
