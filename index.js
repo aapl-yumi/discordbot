@@ -81,10 +81,19 @@ client.on("message", (message) => {
             message.content +
             "```"
         );
+      } else if (message.content.startsWith(`${prefix}ar`)) {
+        guild.child("autoresque/inque").set({
+          author: message.author.id,
+          time: Math.floor(Date.now() / 1000),
+          channel: message.channel.id,
+        });
+        return message.channel.send(
+          "What should the message that initializes an autoresponse?"
+        );
       }
       return;
     });
-
+  return message.channel.send(args);
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
@@ -137,18 +146,6 @@ client.on("message", (message) => {
     } else if (message.content === `${prefix}umi`) {
       return message.channel.send(
         `Visit <https://yumiizumi.com> for more information on Yumi.`
-      );
-    } else if (message.content.startsWith(`${prefix}ar`)) {
-      if (args === "list") {
-        return message.channel.send("abc");
-      }
-      guild.child("autoresque/inque").set({
-        author: message.author.id,
-        time: Math.floor(Date.now() / 1000),
-        channel: message.channel.id,
-      });
-      return message.channel.send(
-        "What should the message that initializes an autoresponse?"
       );
     }
   }
