@@ -144,7 +144,7 @@ client.on("message", (message) => {
           .child("autores")
           .orderByValue()
           .on("value", function (data) {
-            fields = [];
+            let fields = [];
             data.forEach(function (data) {
               fields.push({ name: data.key, value: data.val() });
             });
@@ -156,13 +156,7 @@ client.on("message", (message) => {
                   icon_url: client.user.avatarURL(),
                 },
                 title: "These are the autoresponses set for this server.",
-                fields: [
-                  {
-                    name: "Fields",
-                    value:
-                      "They can have different fields with small headlines.",
-                  },
-                ],
+                fields: fields,
               },
             });
           });
