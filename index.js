@@ -41,12 +41,12 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  inque = guild
+  inque = {};
+  guild
     .child("autoresque/inque")
     .once("value")
     .then(function (snapshot) {
-      Console.log(snapshot.val());
-      return snapshot.val();
+      return (inque = snapshot.val());
     });
   Console.log(inque);
   if (
