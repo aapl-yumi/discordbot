@@ -52,7 +52,9 @@ client.on("message", (message) => {
         message.author.id == inque.author &&
         message.content !== `${prefix}ar`
       ) {
-        guild.child("autoresque/inque").set(inque);
+        guild
+          .child("autoresque/inque")
+          .set({ inque }, { mes: message.content });
         Console.log("channel and author matches");
       }
       return;
