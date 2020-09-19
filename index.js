@@ -149,6 +149,11 @@ client.on("message", (message) => {
       );
     } else if (message.content.startsWith(`${prefix}ar`)) {
       if (args == "list") {
+        return message.channel.send(
+          "Check the list of autoresponses for this server at https://yumiizumi.com/discordbot/" +
+            message.guild.id +
+            "."
+        );
         guild
           .child("autores")
           .orderByValue()
