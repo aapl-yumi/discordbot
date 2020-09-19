@@ -144,7 +144,7 @@ client.on("message", (message) => {
         channel: message.channel.id,
       });
       return message.channel.send(
-        "What should the message that initializes an autoresponse?" + command
+        "What should the message that initializes an autoresponse?" + args
       );
     }
   }
