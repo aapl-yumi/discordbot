@@ -45,11 +45,11 @@ client.on("message", (message) => {
     .child("autoresque/inque")
     .once("value")
     .then(function (snapshot) {
-      return Console.log(snapshot.val());
+      return snapshot.val();
     });
-  if (inque) {
+  if ((message.channel.id = inque.channel)) {
     guild.child("autoresque/inque");
-    Console.log(inque);
+    Console.log("channel matches");
   }
 
   if (message.content === "testtest") {
