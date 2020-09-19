@@ -50,7 +50,7 @@ client.on("message", (message) => {
         message.channel.id == inque.channel &&
         message.author.id == inque.author
       ) {
-        guild.child("autoresque/inque").set({
+        guild.child("autoresque/inque").set(inque, {
           mes: message.content,
         });
         Console.log("channel and author matches");
