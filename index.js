@@ -72,6 +72,9 @@ client.on("message", (message) => {
           message.author.id == inque.author &&
           message.content !== `${prefix}ar`
         ) {
+          if (message.content === "CANCEL") {
+            return message.channel.send("Autoresponder setup was cancelled.");
+          }
           key = guild.child("autores/" + inque.mes).set(message.content);
           guild.child("autoresque/inque").remove();
           return message.channel.send(
