@@ -43,7 +43,7 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  if (message.author.hasPermission("ADMINISTRATOR")) {
+  if (message.member.hasPermission("ADMINISTRATOR")) {
     guild
       .child("autoresque/inque")
       .once("value")
