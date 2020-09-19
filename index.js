@@ -77,9 +77,9 @@ client.on("message", (message) => {
         return message.channel.send(
           "Autoresonder has been set. When you type in \n```" +
             inque.mes +
-            "``` ```" +
+            "```the response will be```" +
             message.content +
-            "```will be the response."
+            "```"
         );
       }
       return;
