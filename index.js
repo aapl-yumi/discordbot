@@ -150,7 +150,7 @@ client.on("message", (message) => {
     } else if (message.content.startsWith(`${prefix}ar`)) {
       if (args == "list") {
         return message.channel.send(
-          "Check the list of autoresponses for this server at https://yumiizumi.com/discordbot/" +
+          "Check the list of autoresponses for this server at https://yumiizumi.com/discordbot/?s=" +
             message.guild.id +
             "."
         );
