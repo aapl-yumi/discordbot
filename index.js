@@ -138,14 +138,18 @@ client.on("message", (message) => {
         `Visit <https://yumiizumi.com> for more information on Yumi.`
       );
     } else if (message.content.startsWith(`${prefix}ar`)) {
-      guild.child("autoresque/inque").set({
-        author: message.author.id,
-        time: Math.floor(Date.now() / 1000),
-        channel: message.channel.id,
-      });
-      return message.channel.send(
-        "What should the message that initializes an autoresponse?" + args
-      );
+      if (args == "list") {
+        return message.channel.send("The list ");
+      } else {
+        guild.child("autoresque/inque").set({
+          author: message.author.id,
+          time: Math.floor(Date.now() / 1000),
+          channel: message.channel.id,
+        });
+        return message.channel.send(
+          "What should the message that initializes an autoresponse?"
+        );
+      }
     }
   }
 });
