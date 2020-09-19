@@ -41,7 +41,7 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  let inque;
+  var inque;
   guild
     .child("autoresque/inque")
     .once("value")
