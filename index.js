@@ -46,7 +46,6 @@ client.on("message", (message) => {
     .once("value")
     .then(function (snapshot) {
       inque = snapshot.val();
-      if (message.content.startsWith(`${prefix}ar`)) return;
       if (
         !inque.mes &&
         message.channel.id == inque.channel &&
@@ -145,7 +144,7 @@ client.on("message", (message) => {
         channel: message.channel.id,
       });
       return message.channel.send(
-        "What should the message that initializes an autoresponse?"
+        "What should the message that initializes an autoresponse?" + command
       );
     }
   }
