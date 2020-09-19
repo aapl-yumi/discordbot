@@ -69,7 +69,7 @@ client.on("message", (message) => {
           mes: inque.mes,
           res: message.content,
         });
-        guild.child("autoresque/inque").set();
+        guild.child("autoresque/inque").remove();
         return message.channel.send(
           "Autoresonder has been set. When you type in \n```" +
             inque.mes +
