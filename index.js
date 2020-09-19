@@ -93,7 +93,7 @@ client.on("message", (message) => {
       }
       return;
     });
-  return message.channel.send(args);
+  message.channel.send(args);
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
