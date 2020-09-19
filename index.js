@@ -45,6 +45,7 @@ client.on("message", (message) => {
     .child("autoresque/inque")
     .once("value")
     .then(function (snapshot) {
+      Console.log(snapshot.val());
       return snapshot.val();
     });
   Console.log(inque);
