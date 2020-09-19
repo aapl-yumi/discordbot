@@ -41,14 +41,13 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  inque = {};
+  let inque;
   guild
     .child("autoresque/inque")
     .once("value")
     .then(function (snapshot) {
       return (inque = snapshot.val());
     });
-  Console.log(inque);
   if (
     message.channel.id == inque.channel &&
     message.author.id == inque.author
