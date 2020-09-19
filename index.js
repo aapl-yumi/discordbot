@@ -48,7 +48,8 @@ client.on("message", (message) => {
       inque = snapshot.val();
       if (
         message.channel.id == inque.channel &&
-        message.author.id == inque.author
+        message.author.id == inque.author &&
+        message.content !== `${prefix}ar`
       ) {
         guild.child("autoresque/inque").set(inque, {
           mes: message.content,
@@ -111,7 +112,7 @@ client.on("message", (message) => {
       return message.channel.send(
         `Visit <https://yumiizumi.com> for more information on Yumi.`
       );
-    } else if (message.content.startsWith(`${prefix}ar`)) {
+    } else if (message.content === `${prefix}ar`) {
       guild.child("autoresque/inque").set({
         author: message.author.id,
         time: Math.floor(Date.now() / 1000),
