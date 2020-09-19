@@ -84,6 +84,13 @@ client.on("message", (message) => {
       }
     });
 
+  guild
+    .child("autores")
+    .orderByChild("mes")
+    .on("value", function (data) {
+      Console.log(data);
+    });
+
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
@@ -139,7 +146,7 @@ client.on("message", (message) => {
       );
     } else if (message.content.startsWith(`${prefix}ar`)) {
       if (args == "list") {
-        return message.channel.send("The list ");
+        return message.channel.send("The list");
       } else {
         guild.child("autoresque/inque").set({
           author: message.author.id,
