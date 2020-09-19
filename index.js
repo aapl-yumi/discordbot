@@ -65,10 +65,14 @@ client.on("message", (message) => {
         message.author.id == inque.author &&
         message.content !== `${prefix}ar`
       ) {
-        guild.child("autores").set({
+        postData = {
           mes: inque.mes,
           res: message.content,
-        });
+        };
+        key = guild.child("autores").push().key;
+        var updates = {};
+        updates["/autores/" + key] = postData;
+        firebase.database().ref().update(updates);
         guild.child("autoresque/inque").remove();
         return message.channel.send(
           "Autoresonder has been set. When you type in \n```" +
