@@ -166,7 +166,7 @@ client.on("message", (message) => {
               },
             });
           });
-      } else {
+      } else if (message.member.hasPermission("ADMINISTRATOR")) {
         guild.child("autoresque/inque").set({
           author: message.author.id,
           time: Math.floor(Date.now() / 1000),
