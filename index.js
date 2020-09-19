@@ -47,6 +47,7 @@ client.on("message", (message) => {
     .then(function (snapshot) {
       return snapshot.val();
     });
+  Console.log(inque);
   if (
     message.channel.id == inque.channel &&
     message.author.id == inque.author
