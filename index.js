@@ -45,7 +45,7 @@ client.on("message", (message) => {
     .child("autoresque/inque")
     .once("value")
     .then(function (snapshot) {
-      return snapshot.val();
+      return Console.log(snapshot.val());
     });
   if (inque) {
     guild.child("autoresque/inque");
