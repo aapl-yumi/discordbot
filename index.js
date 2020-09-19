@@ -88,7 +88,7 @@ client.on("message", (message) => {
     .child("autores")
     .orderByChild("mes")
     .on("value", function (data) {
-      return Console.log(data);
+      return Console.log(data.val());
     });
 
   if (message.content === "testtest") {
