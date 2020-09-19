@@ -43,41 +43,43 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  guild
-    .child("autoresque/inque")
-    .once("value")
-    .then(function (snapshot) {
-      inque = snapshot.val();
-      if (
-        !inque.mes &&
-        message.channel.id == inque.channel &&
-        message.author.id == inque.author &&
-        message.content !== `${prefix}ar`
-      ) {
-        guild.child("autoresque/inque").set({
-          author: inque.author,
-          time: inque.time,
-          channel: inque.channel,
-          mes: message.content,
-        });
-        return message.channel.send("What should the response be?");
-      } else if (
-        inque.mes &&
-        message.channel.id == inque.channel &&
-        message.author.id == inque.author &&
-        message.content !== `${prefix}ar`
-      ) {
-        key = guild.child("autores/" + inque.mes).set(message.content);
-        guild.child("autoresque/inque").remove();
-        return message.channel.send(
-          "Autoresonder has been set. When you type in \n```" +
-            inque.mes +
-            "```the response will be```" +
-            message.content +
-            "```"
-        );
-      }
-    });
+  if (message.author.hasPermission("ADMINISTRATOR")) {
+    guild
+      .child("autoresque/inque")
+      .once("value")
+      .then(function (snapshot) {
+        inque = snapshot.val();
+        if (
+          !inque.mes &&
+          message.channel.id == inque.channel &&
+          message.author.id == inque.author &&
+          message.content !== `${prefix}ar`
+        ) {
+          guild.child("autoresque/inque").set({
+            author: inque.author,
+            time: inque.time,
+            channel: inque.channel,
+            mes: message.content,
+          });
+          return message.channel.send("What should the response be?");
+        } else if (
+          inque.mes &&
+          message.channel.id == inque.channel &&
+          message.author.id == inque.author &&
+          message.content !== `${prefix}ar`
+        ) {
+          key = guild.child("autores/" + inque.mes).set(message.content);
+          guild.child("autoresque/inque").remove();
+          return message.channel.send(
+            "Autoresonder has been set. When you type in \n```" +
+              inque.mes +
+              "```the response will be```" +
+              message.content +
+              "```"
+          );
+        }
+      });
+  }
 
   guild
     .child("autores")
