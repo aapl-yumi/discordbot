@@ -47,7 +47,10 @@ client.on("message", (message) => {
     .then(function (snapshot) {
       return snapshot.val();
     });
-  if ((message.channel.id = inque.channel)) {
+  if (
+    message.channel.id == inque.channel &&
+    message.author.id == inque.author
+  ) {
     guild.child("autoresque/inque");
     Console.log("channel matches");
   }
