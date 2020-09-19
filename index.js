@@ -138,6 +138,32 @@ client.on("message", (message) => {
       );
     } else if (message.content.startsWith(`${prefix}ar`)) {
       if (args == "list") {
+        guild
+          .child("autores")
+          .orderByValue()
+          .on("value", function (data) {
+            fields = [];
+            data.forEach(function (data) {
+              fields.push({ name: data.key, value: data.val() });
+            });
+            return message.channel.send({
+              embed: {
+                color: 3447003,
+                author: {
+                  name: client.user.username,
+                  icon_url: client.user.avatarURL(),
+                },
+                title: "These are the autoresponses set for this server.",
+                fields: [
+                  {
+                    name: "Fields",
+                    value:
+                      "They can have different fields with small headlines.",
+                  },
+                ],
+              },
+            });
+          });
         return message.channel.send("The list");
       } else {
         guild.child("autoresque/inque").set({
