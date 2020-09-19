@@ -32,6 +32,7 @@ client.once("ready", () => {
 
 client.on("message", (message) => {
   if (!message.content) return;
+  lowerCaseMessageContent = message.content.toLowerCase();
 
   guild = firebase
     .database()
@@ -84,17 +85,13 @@ client.on("message", (message) => {
       }
     });
 
-  guild
-    .child("autores")
-    .orderByChild("mes")
-    .on("value", function (data) {
-      return Console.log(data.val().mes);
-    });
+  guild.child("autores" + lowerCaseMessageContent).on("value", function (data) {
+    return Console.log(data.val());
+  });
 
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
   }
-  lowerCaseMessageContent = message.content.toLowerCase();
 
   if (message.author.bot) return;
 
