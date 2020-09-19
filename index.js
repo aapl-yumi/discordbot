@@ -66,14 +66,7 @@ client.on("message", (message) => {
         message.author.id == inque.author &&
         message.content !== `${prefix}ar`
       ) {
-        postData = {
-          mes: inque.mes,
-          res: message.content,
-        };
-        key = guild.child("autores").push().key;
-        var updates = {};
-        updates["/autores/" + key] = postData;
-        guild.update(updates);
+        key = guild.child("autores/" + inque.mes).set(message.content);
         guild.child("autoresque/inque").remove();
         return message.channel.send(
           "Autoresonder has been set. When you type in \n```" +
@@ -95,10 +88,6 @@ client.on("message", (message) => {
         }
       });
     });
-
-  // guild.child("autores" + lowerCaseMessageContent).on("value", function (data) {
-  //   return Console.log(data.val());
-  // });
 
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
