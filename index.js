@@ -91,7 +91,6 @@ client.on("message", (message) => {
           "What should the message that initializes an autoresponse?"
         );
       }
-      return;
     });
   message.channel.send(args);
   if (message.content === "testtest") {
