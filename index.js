@@ -31,8 +31,9 @@ client.once("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (!message.content) return;
   if (message.author.bot) return;
+  if (!message.content) return;
+
   lowerCaseMessageContent = message.content.toLowerCase();
 
   guild = firebase
