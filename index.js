@@ -94,10 +94,6 @@ client.on("message", (message) => {
     return message.channel.send(JSON.stringify(message));
   }
 
-  if (lowerCaseMessageContent.search("sad") >= 0) {
-    return message.channel.send(`omg so sad alexa play despacito`);
-  }
-
   if (message.content === `${prefix}help`) {
     return message.channel.send(
       `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
