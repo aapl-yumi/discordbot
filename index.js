@@ -45,14 +45,15 @@ client.on("message", (message) => {
     .child("autoresque/inque")
     .once("value")
     .then(function (snapshot) {
-      return (inque = snapshot.val());
+      inque = snapshot.val();
+      if (
+        message.channel.id == inque.channel &&
+        message.author.id == inque.author
+      ) {
+        Console.log("channel and author matches");
+      }
+      return;
     });
-  if (
-    message.channel.id == inque.channel &&
-    message.author.id == inque.author
-  ) {
-    Console.log("channel and author matches");
-  }
 
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
