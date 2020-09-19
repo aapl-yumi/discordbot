@@ -85,9 +85,20 @@ client.on("message", (message) => {
       }
     });
 
-  guild.child("autores" + lowerCaseMessageContent).on("value", function (data) {
-    return Console.log(data.val());
-  });
+  guild
+    .child("autores")
+    .orderByValue()
+    .on("value", function (data) {
+      data.forEach(function (data) {
+        if (lowerCaseMessageContent.search(data.key) >= 0) {
+          return message.channel.send(data.val());
+        }
+      });
+    });
+
+  // guild.child("autores" + lowerCaseMessageContent).on("value", function (data) {
+  //   return Console.log(data.val());
+  // });
 
   if (message.content === "testtest") {
     return message.channel.send(JSON.stringify(message));
