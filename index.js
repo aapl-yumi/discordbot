@@ -138,7 +138,10 @@ client.on("message", (message) => {
       return message.channel.send(
         `Visit <https://yumiizumi.com> for more information on Yumi.`
       );
-    } else if (message.content === `${prefix}ar`) {
+    } else if (message.content.startsWith(`${prefix}ar`)) {
+      if (args === "list") {
+        return message.channel.send("abc");
+      }
       guild.child("autoresque/inque").set({
         author: message.author.id,
         time: Math.floor(Date.now() / 1000),
