@@ -164,7 +164,6 @@ client.on("message", (message) => {
               },
             });
           });
-        return message.channel.send("The list");
       } else {
         guild.child("autoresque/inque").set({
           author: message.author.id,
