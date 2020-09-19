@@ -41,9 +41,15 @@ client.on("message", (message) => {
     .child("channels/" + message.channel.id)
     .set({ name: message.channel.name });
 
-  inque = guild.child("autoresque/inque").once("value");
+  inque = guild
+    .child("autoresque/inque")
+    .once("value")
+    .then(function (snapshot) {
+      return snapshot.val();
+    });
   if (inque) {
     guild.child("autoresque/inque");
+    Console.log("");
   }
 
   if (message.content === "testtest") {
@@ -103,6 +109,7 @@ client.on("message", (message) => {
       guild.child("autoresque/inque").set({
         author: message.author.id,
         time: Math.floor(Date.now() / 1000),
+        channel: message.channel.id,
       });
       return message.channel.send(
         "What should the message that initializes a autoresponse?"
