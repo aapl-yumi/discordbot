@@ -58,7 +58,24 @@ client.on("message", (message) => {
           channel: inque.channel,
           mes: message.content,
         });
-        Console.log("channel and author matches");
+        return message.channel.send("What should the response be?");
+      } else if (
+        inque.mes &&
+        message.channel.id == inque.channel &&
+        message.author.id == inque.author &&
+        message.content !== `${prefix}ar`
+      ) {
+        guild.child("autores").set({
+          mes: inque.mes,
+          res: message.content,
+        });
+        return message.channel.send(
+          "Autoresonder has been set. When you type in \n```" +
+            inque.mes +
+            "``` ```" +
+            message.content +
+            "```will be the response."
+        );
       }
       return;
     });
