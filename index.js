@@ -65,7 +65,9 @@ client.on("message", (message) => {
             channel: inque.channel,
             mes: message.content,
           });
-          return message.channel.send("What should the response be?");
+          return message.channel.send(
+            'What should the response be? If you want to cancel, type in "CANCEL".'
+          );
         } else if (
           inque.mes &&
           message.channel.id == inque.channel &&
@@ -174,7 +176,7 @@ client.on("message", (message) => {
           channel: message.channel.id,
         });
         return message.channel.send(
-          "What should the message that initializes an autoresponse?"
+          'What should the message that initializes an autoresponse? If you want to cancel, type in "CANCEL".'
         );
       }
     }
