@@ -10,6 +10,12 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+var Wordnik = require('wordnik');
+ 
+var wn = new Wordnik({
+    api_key: process.env.wordnikApiKey,
+});
+
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
@@ -199,6 +205,10 @@ client.on("message", (message) => {
         return message.channel.send(
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
+      } else if (message.content.startsWith("y?def") {
+　　　　　wn.definitions(args, function(e, defs) {
+          return message.channel.send(e, defs);
+        });
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
           return message.channel.send(
