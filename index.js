@@ -153,10 +153,6 @@ client.on("message", (message) => {
         });
       });
 
-    if (message.content === "testtest") {
-      return message.channel.send(JSON.stringify(message));
-    }
-
     if (message.content === `${prefix}help`) {
       return message.channel.send(
         `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
