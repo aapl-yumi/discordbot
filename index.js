@@ -207,7 +207,7 @@ client.on("message", (message) => {
         );
       } else if (message.content.startsWith(`${prefix}def`)) {
 　　　　　wn.definitions(args, function(e, defs) {
-          return message.channel.send(e, defs);
+          return Console.log(e, defs);
         });
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
