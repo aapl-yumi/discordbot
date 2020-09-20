@@ -112,7 +112,7 @@ client.on("message", (message) => {
                   inque.res +
                   "```"
               );
-            } else if (lowerCaseMessageContent === "yes") {
+            } else if (lowerCaseMessageContent === "no") {
               guild.child("autoresque/inque").remove();
               key = guild.child("autores/" + inque.mes).set(inque.res);
               return message.channel.send(
