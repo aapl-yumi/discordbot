@@ -98,10 +98,15 @@ client.on("message", (message) => {
       .orderByValue()
       .on("value", function (data) {
         data.forEach(function (data) {
-          if (lowerCaseMessageContent.search(data.key) >= 0) {
+          if (data.key.toLowerCase() == lowerCaseMessageContent) {
             return message.channel.send(data.val());
           }
         });
+        // data.forEach(function (data) {
+        //   if (lowerCaseMessageContent.search(data.key) >= 0) {
+        //     return message.channel.send(data.val());
+        //   }
+        // });
       });
 
     if (message.content === "testtest") {
