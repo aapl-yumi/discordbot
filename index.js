@@ -104,7 +104,7 @@ client.on("message", (message) => {
             }
             if (lowerCaseMessageContent === "yes") {
               guild.child("autoresque/inque").remove();
-              key = guild.child("autoreswc/" + inque.mes).set(message.content);
+              key = guild.child("autoreswc/" + inque.mes).set(inque.res);
               return message.channel.send(
                 "Autoresonder has been set with wild card. When you type in \n```" +
                   inque.mes +
@@ -114,7 +114,7 @@ client.on("message", (message) => {
               );
             } else if (lowerCaseMessageContent === "yes") {
               guild.child("autoresque/inque").remove();
-              key = guild.child("autores/" + inque.mes).set(message.content);
+              key = guild.child("autores/" + inque.mes).set(inque.res);
               return message.channel.send(
                 "Autoresonder has been set. When you type in \n```" +
                   inque.mes +
