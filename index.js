@@ -103,8 +103,12 @@ client.on("message", (message) => {
             }
             if (lowerCaseMessageContent === "yes") {
               key = guild.child("autoreswc/" + inque.mes).set(message.content);
-            } else {
+            } else if (lowerCaseMessageContent === "yes") {
               key = guild.child("autores/" + inque.mes).set(message.content);
+            } else {
+              return message.channel.send(
+                'Please reply with "yes" or "no". If you want to cancel, type in "CANCEL".'
+              );
             }
             guild.child("autoresque/inque").remove();
             return message.channel.send(
