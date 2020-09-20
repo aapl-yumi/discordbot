@@ -80,6 +80,16 @@ client.on("message", (message) => {
               guild.child("autoresque/inque").remove();
               return message.channel.send("Autoresponder setup was cancelled.");
             }
+            guild.child("autoresque/inque").set({
+              author: inque.author,
+              time: inque.time,
+              channel: inque.channel,
+              mes: inque.mes,
+              res: message.content,
+            });
+            return message.channel.send(
+              "Do you want this auto response to be wild card?"
+            );
             key = guild.child("autores/" + inque.mes).set(message.content);
             guild.child("autoresque/inque").remove();
             return message.channel.send(
