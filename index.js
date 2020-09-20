@@ -154,26 +154,6 @@ client.on("message", (message) => {
             message.guild.id +
             "."
         );
-        guild
-          .child("autores")
-          .orderByValue()
-          .on("value", function (data) {
-            let fields = [];
-            data.forEach(function (data) {
-              fields.push({ name: data.key, value: data.val() });
-            });
-            return message.channel.send({
-              embed: {
-                color: 3447003,
-                author: {
-                  name: client.user.username,
-                  icon_url: client.user.avatarURL(),
-                },
-                title: "These are the autoresponses set for this server.",
-                fields: fields,
-              },
-            });
-          });
       } else if (message.member.hasPermission("ADMINISTRATOR")) {
         guild.child("autoresque/inque").set({
           author: message.author.id,
