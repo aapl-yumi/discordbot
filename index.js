@@ -223,9 +223,9 @@ client.on("message", (message) => {
 　　　　　getJSON("https://api.wordnik.com/v4/word.json/" + args + "/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=YOURAPIKEY'",
            function(err, data) {
              if (err !== null) {
-                alert('Something went wrong: ' + err);
+                return Console.log('Something went wrong: ' + err);
              } else {
-                alert('Your query count: ' + data.query.count);
+                return Console.log('Your query count: ' + data.query.count);
              }
         });
       } else if (message.content.startsWith(`${prefix}ar`)) {
