@@ -103,22 +103,30 @@ client.on("message", (message) => {
               return message.channel.send("Autoresponder setup was cancelled.");
             }
             if (lowerCaseMessageContent === "yes") {
+              guild.child("autoresque/inque").remove();
               key = guild.child("autoreswc/" + inque.mes).set(message.content);
+              return message.channel.send(
+                "Autoresonder has been set with wild card. When you type in \n```" +
+                  inque.mes +
+                  "```the response will be```" +
+                  inque.res +
+                  "```"
+              );
             } else if (lowerCaseMessageContent === "yes") {
+              guild.child("autoresque/inque").remove();
               key = guild.child("autores/" + inque.mes).set(message.content);
+              return message.channel.send(
+                "Autoresonder has been set. When you type in \n```" +
+                  inque.mes +
+                  "```the response will be```" +
+                  inque.res +
+                  "```"
+              );
             } else {
               return message.channel.send(
                 'Please reply with "yes" or "no". If you want to cancel, type in "CANCEL".'
               );
             }
-            guild.child("autoresque/inque").remove();
-            return message.channel.send(
-              "Autoresonder has been set. When you type in \n```" +
-                inque.mes +
-                "```the response will be```" +
-                inque.res +
-                "```"
-            );
           }
         });
     }
