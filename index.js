@@ -72,6 +72,7 @@ client.on("message", (message) => {
             );
           } else if (
             inque.mes &&
+            !inque.res &&
             message.channel.id == inque.channel &&
             message.author.id == inque.author &&
             message.content !== `${prefix}ar`
