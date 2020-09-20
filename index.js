@@ -88,15 +88,30 @@ client.on("message", (message) => {
               res: message.content,
             });
             return message.channel.send(
-              "Do you want this auto response to be wild card?"
+              'Do you want this auto response to be wild card? Reply with "yes" or "no". If you want to cancel, type in "CANCEL".'
             );
-            key = guild.child("autores/" + inque.mes).set(message.content);
+          } else if (
+            inque.mes &&
+            inque.res &&
+            message.channel.id == inque.channel &&
+            message.author.id == inque.author &&
+            message.content !== `${prefix}ar`
+          ) {
+            if (message.content === "CANCEL") {
+              guild.child("autoresque/inque").remove();
+              return message.channel.send("Autoresponder setup was cancelled.");
+            }
+            if (lowerCaseMessageContent === "yes") {
+              key = guild.child("autoreswc/" + inque.mes).set(message.content);
+            } else {
+              key = guild.child("autores/" + inque.mes).set(message.content);
+            }
             guild.child("autoresque/inque").remove();
             return message.channel.send(
               "Autoresonder has been set. When you type in \n```" +
                 inque.mes +
                 "```the response will be```" +
-                message.content +
+                inque.res +
                 "```"
             );
           }
@@ -117,6 +132,17 @@ client.on("message", (message) => {
         //     return message.channel.send(data.val());
         //   }
         // });
+      });
+
+    guild
+      .child("autoreswc")
+      .orderByValue()
+      .on("value", function (data) {
+        data.forEach(function (data) {
+          if (lowerCaseMessageContent.search(data.key) >= 0) {
+            return message.channel.send(data.val());
+          }
+        });
       });
 
     if (message.content === "testtest") {
