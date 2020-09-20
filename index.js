@@ -161,7 +161,7 @@ client.on("message", (message) => {
           channel: message.channel.id,
         });
         return message.channel.send(
-          'What should the message that initializes an autoresponse? If you want to cancel, type in "CANCEL".'
+          'What should be the message that initializes an autoresponse? If you want to cancel, type in "CANCEL".'
         );
       }
     }
