@@ -205,7 +205,7 @@ client.on("message", (message) => {
         return message.channel.send(
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
-      } else if (message.content.startsWith("y?def") {
+      } else if (message.content.startsWith(`${prefix}def`) {
 　　　　　wn.definitions(args, function(e, defs) {
           return message.channel.send(e, defs);
         });
