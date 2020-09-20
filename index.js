@@ -23,6 +23,21 @@ const prefix = "y!";
 
 const Console = console;
 
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+
 client.once("ready", () => {
   client.user.setPresence({
     activity: {
@@ -187,8 +202,7 @@ client.on("message", (message) => {
           `This server's name is: ${message.guild.name}`
         );
       } else if (
-        message.content === (`${prefix}aboutme` || `${prefix}whoami`)
-      ) {
+        message.content === (`${prefix}aboutme` || `${prefix}whoami`)) {
         return message.channel.send(
           `${message.author}\nYour username: ${message.author.tag}\nYour ID: ${message.author.id}`
         );
@@ -206,8 +220,13 @@ client.on("message", (message) => {
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
       } else if (message.content.startsWith(`${prefix}def`)) {
-　　　　　wn.definitions(args, function(e, defs) {
-          return Console.log(e, defs);
+　　　　　getJSON("https://api.wordnik.com/v4/word.json/" + args + "/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=YOURAPIKEY'",
+           function(err, data) {
+             if (err !== null) {
+                alert('Something went wrong: ' + err);
+             } else {
+                alert('Your query count: ' + data.query.count);
+             }
         });
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
@@ -223,7 +242,7 @@ client.on("message", (message) => {
             channel: message.channel.id,
           });
           return message.channel.send(
-            'What should the message that initializes an autoresponse? If you want to cancel, type in "CANCEL".'
+            'What should the message that initializes an autoresponse? If you want to canchel, type in "CANCEL".'
           );
         }
       }
