@@ -140,11 +140,6 @@ client.on("message", (message) => {
             return message.channel.send(data.val());
           }
         });
-        // data.forEach(function (data) {
-        //   if (lowerCaseMessageContent.search(data.key) >= 0) {
-        //     return message.channel.send(data.val());
-        //   }
-        // });
       });
 
     guild
