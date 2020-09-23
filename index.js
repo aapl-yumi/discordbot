@@ -177,6 +177,8 @@ client.on("message", (message) => {
       const args = message.content.slice(prefix.length).split(" ");
       const command = args.shift().toLowerCase();
 
+      const serverQueue = queue.get(message.guild.id);
+
       if (message.content === `${prefix}ping`) {
         return message.channel.send(`Pong. ${client.ws.ping} ms`);
       } else if (message.content === `${prefix}server`) {
