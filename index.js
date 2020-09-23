@@ -10,11 +10,8 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-var Wordnik = require("wordnik");
-
-var wn = new Wordnik({
-  api_key: process.env.wordnikApiKey,
-});
+const ytdl = require("ytdl-core");
+const queue = new Map();
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
