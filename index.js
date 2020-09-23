@@ -33,6 +33,14 @@ client.once("ready", () => {
   Console.log("Ready");
 });
 
+client.once("reconnecting", () => {
+  Console.log("Reconnecting!");
+});
+
+client.once("disconnect", () => {
+  Console.log("Disconnect!");
+});
+
 client.on("message", (message) => {
   if (!message.content) return;
   if (message.author.bot) {
