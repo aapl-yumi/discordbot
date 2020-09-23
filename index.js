@@ -230,20 +230,20 @@ client.on("message", (message) => {
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
       } else if (message.content.startsWith(`${prefix}def`)) {
-        getJSON(
-          "https://api.wordnik.com/v4/word.json/" +
-            args +
-            "/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=YOURAPIKEY'",
-          function (err, data) {
-            if (err !== null) {
-              return message.channel.send("Something went wrong: " + err);
-            } else {
-              return message.channel.send(
-                "Your query count: " + data.query.count
-              );
-            }
-          }
-        );
+        // getJSON(
+        //   "https://api.wordnik.com/v4/word.json/" +
+        //     args +
+        //     "/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=YOURAPIKEY'",
+        //   function (err, data) {
+        //     if (err !== null) {
+        //       return message.channel.send("Something went wrong: " + err);
+        //     } else {
+        //       return message.channel.send(
+        //         "Your query count: " + data.query.count
+        //       );
+        //     }
+        //   }
+        // );
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
           return message.channel.send(
