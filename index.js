@@ -20,21 +20,6 @@ const prefix = "y!";
 
 const Console = console;
 
-var getJSON = function (url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.responseType = "json";
-  xhr.onload = function () {
-    var status = xhr.status;
-    if (status === 200) {
-      callback(null, xhr.response);
-    } else {
-      callback(status, xhr.response);
-    }
-  };
-  xhr.send();
-};
-
 client.once("ready", () => {
   client.user.setPresence({
     activity: {
@@ -226,21 +211,6 @@ client.on("message", (message) => {
         return message.channel.send(
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
-      } else if (message.content.startsWith(`${prefix}def`)) {
-        // getJSON(
-        //   "https://api.wordnik.com/v4/word.json/" +
-        //     args +
-        //     "/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=YOURAPIKEY'",
-        //   function (err, data) {
-        //     if (err !== null) {
-        //       return message.channel.send("Something went wrong: " + err);
-        //     } else {
-        //       return message.channel.send(
-        //         "Your query count: " + data.query.count
-        //       );
-        //     }
-        //   }
-        // );
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
           return message.channel.send(
