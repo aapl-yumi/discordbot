@@ -261,6 +261,8 @@ client.on("message", (message) => {
             'What should the message that initializes an autoresponse? If you want to canchel, type in "CANCEL".'
           );
         }
+      } else {
+        return message.channel.send('Invalid command. For help use "y!help".');
       }
     }
   }
