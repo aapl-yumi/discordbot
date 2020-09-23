@@ -194,7 +194,7 @@ client.on("message", (message) => {
       } else if (message.content === `${prefix}hello`) {
         return message.channel.send(`ブンブンハロー ${message.author}`);
       } else if (message.content.startsWith(`${prefix}play`)) {
-        execute(message, serverQueue);
+        execute(message, serverQueue).catch((err) => Console.log(err));
         return;
       } else if (message.content.startsWith(`${prefix}skip`)) {
         skip(message, serverQueue);
