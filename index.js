@@ -46,6 +46,19 @@ client.on("message", (message) => {
   if (message.author.bot) {
     return;
   } else {
+    const serverQueue = queue.get(message.guild.id);
+
+    if (message.content.startsWith(`${prefix}play`)) {
+      execute(message, serverQueue);
+      return;
+    } else if (message.content.startsWith(`${prefix}skip`)) {
+      skip(message, serverQueue);
+      return;
+    } else if (message.content.startsWith(`${prefix}stop`)) {
+      stop(message, serverQueue);
+      return;
+    }
+
     lowerCaseMessageContent = message.content.toLowerCase();
 
     guild = firebase
@@ -184,19 +197,6 @@ client.on("message", (message) => {
 
       const args = message.content.slice(prefix.length).split(" ");
       const command = args.shift().toLowerCase();
-
-      const serverQueue = queue.get(message.guild.id);
-
-      if (message.content.startsWith(`${prefix}play`)) {
-        execute(message, serverQueue);
-        return;
-      } else if (message.content.startsWith(`${prefix}skip`)) {
-        skip(message, serverQueue);
-        return;
-      } else if (message.content.startsWith(`${prefix}stop`)) {
-        stop(message, serverQueue);
-        return;
-      }
 
       if (message.content === `${prefix}ping`) {
         return message.channel.send(`Pong. ${client.ws.ping} ms`);
