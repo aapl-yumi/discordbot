@@ -202,7 +202,7 @@ client.on("message", (message) => {
       } else if (message.content === `${prefix}hello`) {
         return message.channel.send(`ブンブンハロー ${message.author}`);
       } else if (message.content.startsWith(`${prefix}play`)) {
-        execute(message, serverQueue).catch((err) => Console.log(err));
+        execute(message, serverQueue);
         return;
       } else if (message.content.startsWith(`${prefix}skip`)) {
         skip(message, serverQueue);
@@ -251,12 +251,12 @@ async function execute(message, serverQueue) {
   const voiceChannel = message.member.voice.channel;
   if (!voiceChannel)
     return message.channel.send(
-      "You need to be in a voice channel to play music."
+      "You need to be in a voice channel to play music!"
     );
   const permissions = voiceChannel.permissionsFor(message.client.user);
   if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
     return message.channel.send(
-      "I need the permissions to join and speak in your voice channel."
+      "I need the permissions to join and speak in your voice channel!"
     );
   }
 
@@ -298,7 +298,7 @@ async function execute(message, serverQueue) {
 function skip(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
-      "You have to be in a voice channel to stop the music."
+      "You have to be in a voice channel to stop the music!"
     );
   if (!serverQueue)
     return message.channel.send("There is no song that I could skip!");
@@ -308,7 +308,7 @@ function skip(message, serverQueue) {
 function stop(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send(
-      "You have to be in a voice channel to stop the music."
+      "You have to be in a voice channel to stop the music!"
     );
   serverQueue.songs = [];
   serverQueue.connection.dispatcher.end();
