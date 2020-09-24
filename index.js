@@ -187,6 +187,17 @@ client.on("message", (message) => {
 
       const serverQueue = queue.get(message.guild.id);
 
+      if (message.content.startsWith(`${prefix}play`)) {
+        execute(message, serverQueue);
+        return;
+      } else if (message.content.startsWith(`${prefix}skip`)) {
+        skip(message, serverQueue);
+        return;
+      } else if (message.content.startsWith(`${prefix}stop`)) {
+        stop(message, serverQueue);
+        return;
+      }
+
       if (message.content === `${prefix}ping`) {
         return message.channel.send(`Pong. ${client.ws.ping} ms`);
       } else if (message.content === `${prefix}server`) {
@@ -201,15 +212,6 @@ client.on("message", (message) => {
         );
       } else if (message.content === `${prefix}hello`) {
         return message.channel.send(`ブンブンハロー ${message.author}`);
-      } else if (message.content.startsWith(`${prefix}play`)) {
-        execute(message, serverQueue);
-        return;
-      } else if (message.content.startsWith(`${prefix}skip`)) {
-        skip(message, serverQueue);
-        return;
-      } else if (message.content.startsWith(`${prefix}stop`)) {
-        stop(message, serverQueue);
-        return;
       } else if (message.content === `${prefix}no`) {
         return message.channel.send(`Because no.`);
       } else if (
