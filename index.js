@@ -30,15 +30,15 @@ client.once("ready", () => {
   client.channels.cache
     .get("755832089764691979")
     .send("Ready at " + new Date());
-  Console.log("Ready");
+  Console.log("Ready.");
 });
 
 client.once("reconnecting", () => {
-  Console.log("Reconnecting!");
+  Console.log("Reconnecting.");
 });
 
 client.once("disconnect", () => {
-  Console.log("Disconnect!");
+  Console.log("Disconnect.");
 });
 
 client.on("message", (message) => {
