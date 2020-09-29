@@ -25,7 +25,7 @@ client.once("ready", () => {
     activity: {
       name: "with an Apple | y!help",
     },
-    status: "idle",
+    status: "online",
   });
   client.channels.cache
     .get("755832089764691979")
@@ -49,13 +49,13 @@ client.on("message", (message) => {
     const serverQueue = queue.get(message.guild.id);
 
     if (message.content.startsWith(`${prefix}play`)) {
-      execute(message, serverQueue);
+      execute(message, serverQueue).catch(err => Console.log(err));
       return;
     } else if (message.content.startsWith(`${prefix}skip`)) {
-      skip(message, serverQueue);
+      skip(message, serverQueue).catch(err => Console.log(err));
       return;
     } else if (message.content.startsWith(`${prefix}stop`)) {
-      stop(message, serverQueue);
+      stop(message, serverQueue).catch(err => Console.log(err));
       return;
     }
 
