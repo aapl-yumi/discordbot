@@ -269,7 +269,10 @@ client.on("message", (message) => {
             'What should the message that initializes an autoresponse? If you want to canchel, type in "CANCEL".'
           );
         }
-      } else if (message.content.startsWith(`${prefix}def`)) {
+      } else if (
+        message.content.startsWith(`${prefix}def`) ||
+        message.content.startsWith(`${prefix}define`)
+      ) {
         return message.channel.send(findDef(args));
       } else {
         return message.channel.send('Invalid command. For help use "y!help".');
