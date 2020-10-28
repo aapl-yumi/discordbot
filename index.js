@@ -31,10 +31,11 @@ function findDef(word) {
     `/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
     wordnikapi;
   let data = JSON.parse(fs.readFileSync(url, "utf8"));
-  return (
-    data[0].text ||
-    "Cannot find definition. Visit https://www.wordnik.com/words"
-  );
+  console.log(data);
+  // return (
+  //   data[0].text ||
+  //   "Cannot find definition. Visit https://www.wordnik.com/words"
+  // );
 }
 
 client.once("ready", () => {
