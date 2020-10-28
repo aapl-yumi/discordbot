@@ -20,6 +20,35 @@ const prefix = "y!";
 
 const Console = console;
 
+wordnikapi = process.env.wordnikApiKey;
+
+var getJSON = function (url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.responseType = "json";
+  xhr.onload = function () {
+    var status = xhr.status;
+    if (status === 200) {
+      callback(null, xhr.response);
+    } else {
+      callback(status, xhr.response);
+    }
+  };
+  xhr.send();
+};
+
+function findDef(word) {
+  let url =
+    `https://api.wordnik.com/v4/word.json/` +
+    word +
+    `/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
+    wordnikapi;
+  getJSON(url, gotData);
+  function gotData(data) {
+    return data[0].text;
+  }
+}
+
 client.once("ready", () => {
   client.user.setPresence({
     activity: {
@@ -49,13 +78,13 @@ client.on("message", (message) => {
     const serverQueue = queue.get(message.guild.id);
 
     if (message.content.startsWith(`${prefix}play`)) {
-      execute(message, serverQueue).catch(err => Console.log(err));
+      execute(message, serverQueue).catch((err) => Console.log(err));
       return;
     } else if (message.content.startsWith(`${prefix}skip`)) {
-      skip(message, serverQueue).catch(err => Console.log(err));
+      skip(message, serverQueue).catch((err) => Console.log(err));
       return;
     } else if (message.content.startsWith(`${prefix}stop`)) {
-      stop(message, serverQueue).catch(err => Console.log(err));
+      stop(message, serverQueue).catch((err) => Console.log(err));
       return;
     }
 
