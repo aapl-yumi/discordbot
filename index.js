@@ -25,13 +25,20 @@ var fs = require("fs");
 wordnikapi = process.env.wordnikApiKey;
 
 async function findDef(word) {
-  let url =
+  const data = await fetch(
     `https://api.wordnik.com/v4/word.json/` +
-    word +
-    `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
-    wordnikapi;
-  const data = await fetch(url).then((response) => response.json());
-  console.log(data);
+      word +
+      `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
+      wordnikapi
+  ).then((response) => response.json());
+  data.forEach((i) => {
+    if (i.text) return i;
+  });
+  console.log(
+    data.forEach((i) => {
+      if (i.text) return i;
+    })
+  );
   // return (
   //   data[0].text ||
   //   "Cannot find definition. Visit https://www.wordnik.com/words"
