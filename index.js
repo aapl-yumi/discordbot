@@ -34,11 +34,11 @@ async function findDef(word) {
   data = data.filter((i) => {
     return i.text != null;
   });
-  console.log(data.text);
-  // return (
-  //   data[0].text ||
-  //   "Cannot find definition. Visit https://www.wordnik.com/words"
-  // );
+  console.log(data);
+  return (
+    data[0].text ||
+    "Cannot find definition. Visit https://www.wordnik.com/words"
+  );
 }
 
 client.once("ready", () => {
