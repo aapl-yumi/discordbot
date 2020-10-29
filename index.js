@@ -28,7 +28,7 @@ async function findDef(word) {
   let url =
     `https://api.wordnik.com/v4/word.json/` +
     word +
-    `/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
+    `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
     wordnikapi;
   const data = await fetch(url).then((response) => response.json());
   console.log(data);
