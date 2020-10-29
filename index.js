@@ -25,7 +25,8 @@ var fs = require("fs");
 wordnikapi = process.env.wordnikApiKey;
 
 function findDef(word) {
-  const data = fetch(
+  data = [];
+  data = fetch(
     `https://api.wordnik.com/v4/word.json/` +
       word +
       `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
