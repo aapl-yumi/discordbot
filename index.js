@@ -32,13 +32,9 @@ async function findDef(word) {
       wordnikapi
   ).then((response) => response.json());
   data = data.filter((i) => {
-    return i.text;
+    if (i.text) return;
   });
-  console.log(
-    data.forEach((i) => {
-      if (i) return i;
-    })
-  );
+  console.log(data);
   // return (
   //   data[0].text ||
   //   "Cannot find definition. Visit https://www.wordnik.com/words"
