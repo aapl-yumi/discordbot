@@ -30,7 +30,7 @@ function findDef(word) {
     word +
     `/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
     wordnikapi;
-  let data = JSON.parse(fs.readFileSync(url, "utf8"));
+  const data = await fetch(url).then(response => response.json());
   console.log(data);
   // return (
   //   data[0].text ||
