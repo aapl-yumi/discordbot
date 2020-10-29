@@ -30,7 +30,9 @@ async function findDef(word) {
       word +
       `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
       wordnikapi
-  ).then((response) => response.json());
+  )
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
   data = data.filter((i) => {
     return i.text != null;
   });
