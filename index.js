@@ -24,13 +24,13 @@ var fs = require("fs");
 
 wordnikapi = process.env.wordnikApiKey;
 
-function findDef(word) {
+async function findDef(word) {
   let url =
     `https://api.wordnik.com/v4/word.json/` +
     word +
     `/definitions?limit=1&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
     wordnikapi;
-  const data = await fetch(url).then(response => response.json());
+  const data = await fetch(url).then((response) => response.json());
   console.log(data);
   // return (
   //   data[0].text ||
