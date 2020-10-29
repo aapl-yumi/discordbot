@@ -31,12 +31,9 @@ async function findDef(word) {
       `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
       wordnikapi
   ).then((response) => response.json());
-  data.forEach((i) => {
-    if (i.text) return i;
-  });
   console.log(
     data.forEach((i) => {
-      if (i.text) return i;
+      if (i) return i;
     })
   );
   // return (
