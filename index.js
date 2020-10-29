@@ -32,7 +32,7 @@ async function findDef(word) {
       wordnikapi
   ).then((response) => response.json());
   data = data.filter((i) => {
-    if (i.text) return;
+    return i.text != null;
   });
   console.log(data);
   // return (
