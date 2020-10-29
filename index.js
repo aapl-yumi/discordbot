@@ -31,6 +31,9 @@ async function findDef(word) {
       `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
       wordnikapi
   ).then((response) => response.json());
+  data = data.filter((i) => {
+    return i.text;
+  });
   console.log(
     data.forEach((i) => {
       if (i) return i;
