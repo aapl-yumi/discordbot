@@ -271,12 +271,37 @@ client.on("message", (message) => {
         return message.channel.send(
           findDef(args).catch((err) => console.log(err))
         );
+      } else if (message.content === `${prefix}election`) {
+        var request = makeHttpObject();
+        request.open(
+          "GET",
+          "https://www.nytimes.com/interactive/2020/11/03/us/elections/results-president.html",
+          true
+        );
+        request.send(null);
+        request.onreadystatechange = function () {
+          if (request.readyState == 4) console.log(request.responseText);
+        };
       } else {
         return message.channel.send('Invalid command. For help use "y!help".');
       }
     }
   }
 });
+
+function makeHttpObject() {
+  try {
+    return new XMLHttpRequest();
+  } catch (error) {}
+  try {
+    return new ActiveXObject("Msxml2.XMLHTTP");
+  } catch (error) {}
+  try {
+    return new ActiveXObject("Microsoft.XMLHTTP");
+  } catch (error) {}
+
+  throw new Error("Could not create HTTP request object.");
+}
 
 async function execute(message, serverQueue) {
   const args = message.content.split(" ");
