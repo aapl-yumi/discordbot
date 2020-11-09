@@ -34,9 +34,9 @@ function findDef(word) {
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
-  data = data.filter((i) => {
-    return i.text != null;
-  });
+  // data = data.filter((i) => {
+  //   return i.text != null;
+  // });
   console.log(data);
   return (
     data[0].text ||
