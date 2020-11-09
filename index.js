@@ -40,7 +40,7 @@ function findDef(word) {
   console.log(data);
   return (
     data[0].text ||
-    "Cannot find definition. Visit https://www.wordnik.com/words"
+    `Cannot find definition. Visit https://www.wordnik.com/words/` + word
   );
 }
 
