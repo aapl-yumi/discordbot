@@ -39,7 +39,12 @@ function findDef(word) {
       `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
       wordnikapi
   );
-  return "abc";
+  return (
+    `https://api.wordnik.com/v4/word.json/` +
+    word +
+    `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
+    wordnikapi
+  );
   let def = data.find((i) => i.text != null);
   console.log(def.text);
   return (
