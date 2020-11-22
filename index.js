@@ -269,9 +269,7 @@ client.on("message", (message) => {
         message.content.startsWith(`${prefix}def`) ||
         message.content.startsWith(`${prefix}define`)
       ) {
-        return message.channel.send(
-          findDef(args).catch((err) => console.log(err))
-        );
+        return message.channel.send(findDef(args));
       } else {
         return message.channel.send('Invalid command. For help use "y!help".');
       }
