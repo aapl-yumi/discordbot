@@ -34,7 +34,7 @@ function findDef(word) {
     .then((response) => response.json())
     .catch((err) => console.log(err));
   console.log(data);
-  return;
+  return "abc";
   let def = data.find((i) => i.text != null);
   console.log(def.text);
   return (
