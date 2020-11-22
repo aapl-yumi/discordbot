@@ -25,7 +25,7 @@ var fs = require("fs");
 wordnikapi = process.env.wordnikApiKey;
 
 function findDef(word) {
-  data = [];
+  data = [{}];
   data = fetch(
     `https://api.wordnik.com/v4/word.json/` +
       word +
@@ -34,13 +34,13 @@ function findDef(word) {
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
-  // data = data.filter((i) => {
-  //   return i.text != null;
-  // });
-  console.log(data);
+  let def = data.find((i) => i.text != null);
+  console.log(def);
   return (
-    data[0].text ||
-    `Cannot find definition. Visit https://www.wordnik.com/words/` + word
+    def ||
+    `Cannot find definition. Visit <https://www.wordnik.com/words/` +
+      word +
+      `>.`
   );
 }
 
