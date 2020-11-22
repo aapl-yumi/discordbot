@@ -33,7 +33,12 @@ function findDef(word) {
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
-  console.log(data);
+  console.log(
+    `https://api.wordnik.com/v4/word.json/` +
+      word +
+      `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
+      wordnikapi
+  );
   return "abc";
   let def = data.find((i) => i.text != null);
   console.log(def.text);
