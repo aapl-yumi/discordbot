@@ -25,8 +25,7 @@ var fs = require("fs");
 wordnikapi = process.env.wordnikApiKey;
 
 function findDef(word) {
-  data = [{}];
-  data = fetch(
+  let data = fetch(
     `https://api.wordnik.com/v4/word.json/` +
       word +
       `/definitions?limit=5&includeRelated=false&useCanonical=false&includeTags=false&api_key=` +
@@ -35,9 +34,9 @@ function findDef(word) {
     .then((response) => response.json())
     .catch((err) => console.log(err));
   let def = data.find((i) => i.text != null);
-  console.log(def);
+  console.log(def.text);
   return (
-    def ||
+    def.text ||
     `Cannot find definition. Visit <https://www.wordnik.com/words/` +
       word +
       `>.`
