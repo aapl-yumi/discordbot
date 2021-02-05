@@ -74,9 +74,6 @@ client.once("ready", () => {
     },
     status: "online",
   });
-  client.channels.cache
-    .get("755832089764691979")
-    .send("Ready at " + new Date());
   Console.log("Ready.");
 });
 
