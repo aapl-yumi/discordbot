@@ -229,9 +229,9 @@ client.on("message", (message) => {
         inque = snapshot.val();
         if (message.channel.id == inque.channel) {
           rn = Math.floor(Date.now());
-          guild.child("autoresque/" + message.author.id).set();
           numWord = inque.length / 5;
           timeTook = (rn - inque.time) / 60000;
+          guild.child("autoresque/" + message.author.id).remove();
           return message.channel.send(numWord / timeTook + "wpm");
         }
       });
