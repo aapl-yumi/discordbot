@@ -231,8 +231,8 @@ client.on("message", (message) => {
           rn = Math.floor(Date.now());
           numWord = inque.length / 5;
           timeTook = (rn - inque.time) / 60000;
-          guild.child("autoresque/" + message.author.id).remove();
-          return message.channel.send(numWord / timeTook + "wpm");
+          guild.child("typing/" + message.author.id).remove();
+          return message.channel.send(Math.floor(numWord / timeTook) + "wpm");
         }
       });
 
