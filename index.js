@@ -227,10 +227,13 @@ client.on("message", (message) => {
       .then(function (snapshot) {
         console.log(inque);
         inque = snapshot.val();
-        if (message.channel.id == inque.channel) {
-          rn = Math.floor(Date.now());
-          numWord = inque.length / 5;
-          timeTook = (rn - inque.time) / 60000;
+        rn = Math.floor(Date.now());
+        numWord = inque.length / 5;
+        timeTook = (rn - inque.time) / 60000;
+        if (
+          message.channel.id == inque.channel &&
+          Math.floor(numWord / timeTook) < 500
+        ) {
           guild.child("typing/" + message.author.id).remove();
           return message.channel.send(Math.floor(numWord / timeTook) + "wpm");
         }
