@@ -228,13 +228,14 @@ client.on("message", (message) => {
         console.log(inque);
         inque = snapshot.val();
         rn = Math.floor(Date.now());
-        numWord = inque.length / 5;
+        numWord = inque.original.length / 5;
         timeTook = (rn - inque.time) / 60000;
         if (
           message.channel.id == inque.channel &&
           Math.floor(numWord / timeTook) < 500
         ) {
           guild.child("typing/" + message.author.id).remove();
+          similarity(message.content, inque.original);
           return message.channel.send(Math.floor(numWord / timeTook) + "wpm");
         }
       });
@@ -291,7 +292,7 @@ client.on("message", (message) => {
           author: message.author.id,
           time: Math.floor(Date.now()),
           channel: message.channel.id,
-          length: text.length,
+          original: text,
         });
         return message.channel.send(text);
       } else if (message.content.startsWith(`${prefix}ar`)) {
@@ -409,6 +410,46 @@ function play(guild, song) {
     .on("error", (error) => console.error(error));
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
   serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+}
+
+function similarity(s1, s2) {
+  var longer = s1;
+  var shorter = s2;
+  if (s1.length < s2.length) {
+    longer = s2;
+    shorter = s1;
+  }
+  var longerLength = longer.length;
+  if (longerLength === 0) {
+    return 1.0;
+  }
+  return (
+    (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength)
+  );
+}
+
+function editDistance(s1, s2) {
+  s1 = s1.toLowerCase();
+  s2 = s2.toLowerCase();
+
+  var costs = new Array();
+  for (var i = 0; i <= s1.length; i++) {
+    var lastValue = i;
+    for (var j = 0; j <= s2.length; j++) {
+      if (i == 0) costs[j] = j;
+      else {
+        if (j > 0) {
+          var newValue = costs[j - 1];
+          if (s1.charAt(i - 1) != s2.charAt(j - 1))
+            newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+          costs[j - 1] = lastValue;
+          lastValue = newValue;
+        }
+      }
+    }
+    if (i > 0) costs[s2.length] = lastValue;
+  }
+  return costs[s2.length];
 }
 
 client.login(process.env.BOT_TOKEN);
