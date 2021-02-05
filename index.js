@@ -239,7 +239,8 @@ client.on("message", (message) => {
             Math.floor(numWord / timeTook) +
               "wpm, accuracy: " +
               Math.round(similarity(message.content, inque.original) * 10000) /
-                100
+                100 +
+              "%"
           );
         }
       });
