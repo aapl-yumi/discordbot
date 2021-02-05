@@ -24,6 +24,18 @@ var fs = require("fs");
 
 wordnikapi = process.env.wordnikApiKey;
 
+var quotes = [
+  "I love you the more in that I believe you had liked me for my own sake and for nothing else.",
+  "But man is not made for defeat. A man can be destroyed but not defeated.",
+  "When you reach the end of your rope, tie a knot in it and hang on.",
+  "There is nothing permanent except change.",
+  "You cannot shake hands with a clenched fist.",
+  "Let us sacrifice our today so that our children can have a better tomorrow.",
+  "It is better to be feared than loved, if you cannot be both.",
+  "The most difficult thing is the decision to act, the rest is merely tenacity. The fears are paper tigers. You can do anything you decide to do. You can act to change and control your life; and the procedure, the process is its own reward.",
+  "Do not mind anything that anyone tells you about anyone else. Judge everyone and everything for yourself.",
+];
+
 function findDef(word) {
   let data = fetch(
     `https://api.wordnik.com/v4/word.json/` +
@@ -258,6 +270,15 @@ client.on("message", (message) => {
         return message.channel.send(
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
+      } else if (message.content.startsWith(`${prefix}type`)) {
+        text = quotes[Math.floor(Math.random() * quotes.length)];
+        guild.child("typing/" + message.author.id).set({
+          author: message.author.id,
+          time: Math.floor(Date.now()),
+          channel: message.channel.id,
+          length: text.length,
+        });
+        return message.channel.send(text);
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
           return message.channel.send(
