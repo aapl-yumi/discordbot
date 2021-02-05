@@ -224,6 +224,21 @@ client.on("message", (message) => {
         });
       });
 
+    guild
+      .child("typing/" + message.author.id)
+      .once("value")
+      .then(function (snapshot) {
+        console.log(inque);
+        inque = snapshot.val();
+        if (message.channel.id == inque.channel) {
+          rn = Math.floor(Date.now());
+          guild.child("autoresque/" + message.author.id).remove();
+          return message.channel.send(
+            Math.floor(inque.length / 5) / ((rn - inque.time) / 60000) + "wpm"
+          );
+        }
+      });
+
     if (message.content === `${prefix}help`) {
       return message.channel.send(
         `For help, please visit https://yumiizumi.com/discordbot, and hope there is any help there.`
