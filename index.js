@@ -238,7 +238,8 @@ client.on("message", (message) => {
           return message.channel.send(
             Math.floor(numWord / timeTook) +
               "wpm, accuracy: " +
-              similarity(message.content, inque.original)
+              Math.round(similarity(message.content, inque.original) * 10000) /
+                100
           );
         }
       });
