@@ -235,8 +235,11 @@ client.on("message", (message) => {
           Math.floor(numWord / timeTook) < 500
         ) {
           guild.child("typing/" + message.author.id).remove();
-          similarity(message.content, inque.original);
-          return message.channel.send(Math.floor(numWord / timeTook) + "wpm");
+          return message.channel.send(
+            Math.floor(numWord / timeTook) +
+              "wpm, accuracy: " +
+              similarity(message.content, inque.original)
+          );
         }
       });
 
