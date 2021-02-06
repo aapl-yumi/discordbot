@@ -306,12 +306,12 @@ client.on("message", (message) => {
         message.content === `${prefix}tl` ||
         message.content === `${prefix}typeleaderboard`
       ) {
-        lb = "Leaderboard:\n";
         guild
           .child("typing/leaderboard")
           .orderByChild("wpm")
           .limitToFirst(5)
-          .on("value", function (snapshot) {
+          .on("once", function (snapshot) {
+            lb = "Leaderboard:\n";
             i = 1;
             snapshot.forEach((snap) => {
               console.log(snap.val());
