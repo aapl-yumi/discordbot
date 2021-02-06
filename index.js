@@ -246,7 +246,7 @@ client.on("message", (message) => {
               });
             if (acc > 95 && wpm > oldwpm) {
               guild.child("typing/leaderboard/" + message.author.id).set({
-                user: message.author.toString(),
+                user: message.author.username,
                 wpm: Math.floor(numWord / timeTook),
                 accuracy: acc,
               });
