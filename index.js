@@ -310,7 +310,7 @@ client.on("message", (message) => {
           .child("typing/leaderboard")
           .orderByChild("wpm")
           .limitToFirst(5)
-          .on("value", function (snapshot) {
+          .once("value", function (snapshot) {
             lb = "Leaderboard:\n";
             i = 1;
             snapshot.reverse().forEach((snap) => {
