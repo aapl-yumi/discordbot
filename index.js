@@ -315,9 +315,9 @@ client.on("message", (message) => {
             snapshot.forEach((snap) => {
               console.log(snap.val());
               lb +=
-                "@" +
+                "<@" +
                 snap.val().user +
-                " : " +
+                ">: " +
                 snap.val().wpm +
                 "wpm, accuracy: " +
                 snap.val().accuracy +
