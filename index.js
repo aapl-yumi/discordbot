@@ -225,7 +225,6 @@ client.on("message", (message) => {
       .child("typing/" + message.author.id)
       .once("value")
       .then(function (snapshot) {
-        console.log(inque);
         inque = snapshot.val();
         rn = Math.floor(Date.now());
         numWord = inque.original.length / 5;
@@ -235,12 +234,18 @@ client.on("message", (message) => {
           Math.floor(numWord / timeTook) < 500
         ) {
           guild.child("typing/" + message.author.id).remove();
+          acc =
+            Math.round(similarity(message.content, inque.original) * 10000) /
+            100;
+          if (acc > 95) {
+            guild.child("typing/leaderboard" + message.author.id).set({
+              user: message.author.id,
+              wpm: Math.floor(numWord / timeTook),
+              accuracy: acc,
+            });
+          }
           return message.channel.send(
-            Math.floor(numWord / timeTook) +
-              "wpm, accuracy: " +
-              Math.round(similarity(message.content, inque.original) * 10000) /
-                100 +
-              "%"
+            Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
           );
         }
       });
@@ -291,6 +296,22 @@ client.on("message", (message) => {
         return message.channel.send(
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
+      } else if (
+        message.content === `${prefix}tl` ||
+        message.content === `${prefix}typeleaderboard`
+      ) {
+        lb = "";
+        guild
+          .child("typing/leaderboard")
+          .orderByChild("wpm")
+          .limitToFirst(5)
+          .on("value", function (snapshot) {
+            snapshot.forEach((snap) => {
+              lb +=
+                snap.val().wpm + "wpm, accuracy: " + snap.val().accuracy + "%";
+            });
+          });
+        return message.channel.send(lb);
       } else if (message.content.startsWith(`${prefix}type`)) {
         qnum = Math.floor(Math.random() * quotes.length);
         text = quotes[qnum];
