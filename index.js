@@ -235,6 +235,7 @@ client.on("message", (message) => {
             acc =
               Math.round(similarity(message.content, inque.original) * 10000) /
               100;
+            oldwpm;
             guild
               .child("typing/leaderboard/" + message.author.id)
               .on("value", function (data) {
