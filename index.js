@@ -292,14 +292,17 @@ client.on("message", (message) => {
           `Visit <https://yumiizumi.com> for more information on Yumi.`
         );
       } else if (message.content.startsWith(`${prefix}type`)) {
-        text = quotes[Math.floor(Math.random() * quotes.length)];
+        qnum = Math.floor(Math.random() * quotes.length);
+        text = quotes[qnum];
         guild.child("typing/" + message.author.id).set({
           author: message.author.id,
           time: Math.floor(Date.now()),
           channel: message.channel.id,
           original: text,
         });
-        return message.channel.send(text);
+        return message.channel.send(
+          "https://yumi.to/images/discordbot/" + qnum + ".png"
+        );
       } else if (message.content.startsWith(`${prefix}ar`)) {
         if (args == "list") {
           return message.channel.send(
