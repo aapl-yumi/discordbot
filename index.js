@@ -317,7 +317,7 @@ client.on("message", (message) => {
               lb +=
                 "@" +
                 snap.val().user +
-                ": " +
+                " : " +
                 snap.val().wpm +
                 "wpm, accuracy: " +
                 snap.val().accuracy +
