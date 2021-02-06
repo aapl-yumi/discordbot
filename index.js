@@ -237,7 +237,16 @@ client.on("message", (message) => {
           acc =
             Math.round(similarity(message.content, inque.original) * 10000) /
             100;
-          if (acc > 95) {
+
+          if (
+            acc > 95 &&
+            wpm >
+              guild
+                .child("typing/leaderboard/" + message.author.id)
+                .on("value", function (data) {
+                  return data.wpm;
+                })
+          ) {
             guild.child("typing/leaderboard/" + message.author.id).set({
               user: message.author.id,
               wpm: Math.floor(numWord / timeTook),
@@ -308,7 +317,6 @@ client.on("message", (message) => {
           .on("value", function (snapshot) {
             snapshot.forEach((snap) => {
               lb +=
-                snap.val().user +
                 snap.val().wpm +
                 "wpm, accuracy: " +
                 snap.val().accuracy +
