@@ -300,7 +300,7 @@ client.on("message", (message) => {
         message.content === `${prefix}tl` ||
         message.content === `${prefix}typeleaderboard`
       ) {
-        lb = "";
+        lb = "Leaderboard:\n";
         guild
           .child("typing/leaderboard")
           .orderByChild("wpm")
@@ -315,7 +315,6 @@ client.on("message", (message) => {
                 "%\n";
             });
           });
-        if (lb.length == 0) return message.channel.send("No data was found.");
         return message.channel.send(lb);
       } else if (message.content.startsWith(`${prefix}type`)) {
         qnum = Math.floor(Math.random() * quotes.length);
