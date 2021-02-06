@@ -308,9 +308,14 @@ client.on("message", (message) => {
           .on("value", function (snapshot) {
             snapshot.forEach((snap) => {
               lb +=
-                snap.val().wpm + "wpm, accuracy: " + snap.val().accuracy + "%";
+                snap.val().user +
+                snap.val().wpm +
+                "wpm, accuracy: " +
+                snap.val().accuracy +
+                "%\n";
             });
           });
+        if (lb.length == 0) return message.channel.send("No data was found.");
         return message.channel.send(lb);
       } else if (message.content.startsWith(`${prefix}type`)) {
         qnum = Math.floor(Math.random() * quotes.length);
