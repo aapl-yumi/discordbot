@@ -240,7 +240,7 @@ client.on("message", (message) => {
               .child("typing/leaderboard/" + message.author.id)
               .on("value", function (data) {
                 console.log(data);
-                oldwpm = data.wpm;
+                oldwpm = data.val().wpm;
               });
             if (acc > 95 && wpm > oldwpm) {
               guild.child("typing/leaderboard/" + message.author.id).set({
