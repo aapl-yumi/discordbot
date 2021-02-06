@@ -238,7 +238,7 @@ client.on("message", (message) => {
             Math.round(similarity(message.content, inque.original) * 10000) /
             100;
           if (acc > 95) {
-            guild.child("typing/leaderboard" + message.author.id).set({
+            guild.child("typing/leaderboard/" + message.author.id).set({
               user: message.author.id,
               wpm: Math.floor(numWord / timeTook),
               accuracy: acc,
