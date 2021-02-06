@@ -314,7 +314,7 @@ client.on("message", (message) => {
           .on("value", function (snapshot) {
             snapshot.forEach((snap) => {
               console.log(snap.val());
-              lb =
+              lb +=
                 snap.val().wpm +
                 "wpm, accuracy: " +
                 snap.val().accuracy +
