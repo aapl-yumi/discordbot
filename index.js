@@ -237,16 +237,13 @@ client.on("message", (message) => {
           acc =
             Math.round(similarity(message.content, inque.original) * 10000) /
             100;
-
-          if (
-            acc > 95 &&
-            wpm >
-              guild
-                .child("typing/leaderboard/" + message.author.id)
-                .on("value", function (data) {
-                  return data.wpm;
-                })
-          ) {
+          oldwpm =
+            guild
+              .child("typing/leaderboard/" + message.author.id)
+              .on("value", function (data) {
+                return data.wpm;
+              }) || 0;
+          if (acc > 95 && wpm > oldwpm) {
             guild.child("typing/leaderboard/" + message.author.id).set({
               user: message.author.id,
               wpm: Math.floor(numWord / timeTook),
