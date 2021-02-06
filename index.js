@@ -313,7 +313,8 @@ client.on("message", (message) => {
           .limitToFirst(5)
           .on("value", function (snapshot) {
             snapshot.forEach((snap) => {
-              lb +=
+              lb =
+                lb +
                 snap.val().wpm +
                 "wpm, accuracy: " +
                 snap.val().accuracy +
