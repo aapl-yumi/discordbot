@@ -313,7 +313,7 @@ client.on("message", (message) => {
           .on("once", function (snapshot) {
             lb = "Leaderboard:\n";
             i = 1;
-            snapshot.forEach((snap) => {
+            snapshot.reverse().forEach((snap) => {
               console.log(snap.val());
               lb +=
                 "#" +
