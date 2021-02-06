@@ -224,34 +224,36 @@ client.on("message", (message) => {
       .child("typing/" + message.author.id)
       .once("value")
       .then(function (snapshot) {
-        inque = snapshot.val();
-        rn = Math.floor(Date.now());
-        numWord = inque.original.length / 5;
-        timeTook = (rn - inque.time) / 60000;
-        if (
-          message.channel.id == inque.channel &&
-          Math.floor(numWord / timeTook) < 500
-        ) {
-          guild.child("typing/" + message.author.id).remove();
-          acc =
-            Math.round(similarity(message.content, inque.original) * 10000) /
-            100;
-          oldwpm = 0;
-          guild
-            .child("typing/leaderboard/" + message.author.id)
-            .on("value", function (data) {
-              oldwpm = data.wpm || 0;
-            });
-          if (acc > 95 && wpm > oldwpm) {
-            guild.child("typing/leaderboard/" + message.author.id).set({
-              user: message.author.id,
-              wpm: Math.floor(numWord / timeTook),
-              accuracy: acc,
-            });
+        if (snapshot) {
+          inque = snapshot.val();
+          rn = Math.floor(Date.now());
+          numWord = inque.original.length / 5;
+          timeTook = (rn - inque.time) / 60000;
+          if (
+            message.channel.id == inque.channel &&
+            Math.floor(numWord / timeTook) < 500
+          ) {
+            guild.child("typing/" + message.author.id).remove();
+            acc =
+              Math.round(similarity(message.content, inque.original) * 10000) /
+              100;
+            oldwpm = 0;
+            guild
+              .child("typing/leaderboard/" + message.author.id)
+              .on("value", function (data) {
+                oldwpm = data.wpm || 0;
+              });
+            if (acc > 95 && wpm > oldwpm) {
+              guild.child("typing/leaderboard/" + message.author.id).set({
+                user: message.author.id,
+                wpm: Math.floor(numWord / timeTook),
+                accuracy: acc,
+              });
+            }
+            return message.channel.send(
+              Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
+            );
           }
-          return message.channel.send(
-            Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
-          );
         }
       });
 
