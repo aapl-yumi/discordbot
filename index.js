@@ -327,8 +327,8 @@ client.on("message", (message) => {
                 "%\n";
               i++;
             });
+            return message.channel.send(lb);
           });
-        return message.channel.send(lb);
       } else if (message.content.startsWith(`${prefix}type`)) {
         qnum = Math.floor(Math.random() * quotes.length);
         text = quotes[qnum];
