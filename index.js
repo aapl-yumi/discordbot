@@ -249,6 +249,9 @@ client.on("message", (message) => {
                 wpm: Math.floor(numWord / timeTook),
                 accuracy: acc,
               });
+              return message.channel.send(
+                Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
+              );
             }
             return message.channel.send(
               Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
