@@ -313,7 +313,11 @@ client.on("message", (message) => {
           .once("value", function (snapshot) {
             lb = "Leaderboard:\n";
             i = 1;
-            snapshot.forEach((snap) => {
+            ns = [];
+            for (j = 4; i >= 0; i--) {
+              ns.push(snapshot[j]);
+            }
+            ns.forEach((snap) => {
               console.log(snap.val());
               lb +=
                 "#" +
