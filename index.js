@@ -230,10 +230,7 @@ client.on("message", (message) => {
           numWord = inque.original.length / 5;
           timeTook = (rn - inque.time) / 60000;
           wpm = Math.floor(numWord / timeTook);
-          if (
-            message.channel.id == inque.channel &&
-            Math.floor(numWord / timeTook) < 500
-          ) {
+          if (message.channel.id == inque.channel && wpm < 500) {
             guild.child("typing/" + message.author.id).remove();
             acc =
               Math.round(similarity(message.content, inque.original) * 10000) /
@@ -247,8 +244,9 @@ client.on("message", (message) => {
             if (acc > 95 && wpm > oldwpm) {
               guild.child("typing/leaderboard/" + message.author.id).set({
                 user: message.author.username,
-                wpm: Math.floor(numWord / timeTook),
+                wpm: wpm,
                 accuracy: acc,
+                revwpm: 500 - wpm,
               });
             }
             return message.channel.send(wpm + "wpm, accuracy: " + acc + "%");
@@ -308,7 +306,7 @@ client.on("message", (message) => {
       ) {
         guild
           .child("typing/leaderboard")
-          .orderByChild("wpm")
+          .orderByChild("revwpm")
           .limitToFirst(5)
           .once("value", function (snapshot) {
             lb = "Leaderboard:\n";
