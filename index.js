@@ -229,6 +229,7 @@ client.on("message", (message) => {
           rn = Math.floor(Date.now());
           numWord = inque.original.length / 5;
           timeTook = (rn - inque.time) / 60000;
+          wpm = Math.floor(numWord / timeTook);
           if (
             message.channel.id == inque.channel &&
             Math.floor(numWord / timeTook) < 500
@@ -249,13 +250,8 @@ client.on("message", (message) => {
                 wpm: Math.floor(numWord / timeTook),
                 accuracy: acc,
               });
-              return message.channel.send(
-                Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
-              );
             }
-            return message.channel.send(
-              Math.floor(numWord / timeTook) + "wpm, accuracy: " + acc + "%"
-            );
+            return message.channel.send(wpm + "wpm, accuracy: " + acc + "%");
           }
         }
       });
