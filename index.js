@@ -312,15 +312,20 @@ client.on("message", (message) => {
           .orderByChild("wpm")
           .limitToFirst(5)
           .on("value", function (snapshot) {
+            i = 1;
             snapshot.forEach((snap) => {
               console.log(snap.val());
               lb +=
+                "#" +
+                i +
+                " " +
                 snap.val().user +
                 ": " +
                 snap.val().wpm +
                 "wpm, accuracy: " +
                 snap.val().accuracy +
                 "%\n";
+              i++;
             });
           });
         return message.channel.send(lb);
