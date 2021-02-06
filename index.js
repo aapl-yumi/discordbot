@@ -120,7 +120,6 @@ client.on("message", (message) => {
         .then(function (snapshot) {
           inque = snapshot.val();
           if (
-            !inque.mes &&
             message.channel.id == inque.channel &&
             message.author.id == inque.author &&
             message.content !== `${prefix}ar`
